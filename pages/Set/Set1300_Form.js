@@ -68,7 +68,7 @@ export default function Set1300_Form() {
 
             <Card className='bg-white pt-8 w-full xs:w-auto xs:h-auto sm:w-auto sm:h-auto md:h-auto md:w-auto lg:h-auto lg:w-auto lg:mx-36 rounded-3xl'>
                 <div className='w-full my-3 text-red-800 md:text-white text-xl md:text-xl md:bg-red-800 md:px-8 py-2 rounded-3xl'>
-                    โต๊ะจีนราคา1300
+                    โต๊ะจีนราคา 1,300 บาท
                 </div>
                 <div className=' mt-4 text-center' >
                     <Card className='lg:px-20 bg-red-800 rounded-3xl mx-1'>
@@ -207,7 +207,7 @@ export default function Set1300_Form() {
                                     <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
                                         จำนวนคน                
                                     </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-2' >
+                                    <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-2 ml-8' >
                                         3,000              
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
@@ -229,7 +229,7 @@ export default function Set1300_Form() {
                                     height={600}
                                     width={500}
                                     alt='f'
-                                    src="/12.jpg" />
+                                    src="/23.jpg" />
                         </div>
 
 

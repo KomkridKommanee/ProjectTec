@@ -13,21 +13,19 @@ export default function Set1500() {
             
             <Card className='bg-white pt-8 w-full lg:mx-36 rounded-3xl'>
                 <div className='w-full my-3 text-red-800 md:text-white text-xl md:text-xl md:bg-red-800 md:px-8 py-2 rounded-3xl'>
-                    โต๊ะจีนราคา1500
+                โต๊ะจีนราคา 1,500 บาท
                 </div>
                 <div className=' mt-4 text-center' >
                     <Card className='lg:px-20 bg-red-800 rounded-3xl mx-1'>
                         <div className='grid grid-cols-2'>
-                        <div className=' my-5'>
-                                <Image
+                        <div className=' my-5 col-span-2 xl:col-span-1 self-center'>
+                                <Image className='h-fit'
                                     src="/16.jpg"
-                                    width={750}
-                                    height={650}
                                     alt="Trulli"
 
                                 />
                                 </div>
-                            <Card className=' bg-orange-100 my-4 '>
+                            <Card className=' bg-orange-100 my-4 col-span-2 xl:col-span-1'>
                                 <div className='grid grid-cols-5'>
                                     <p className=' text-start w-full my-3 text-red-800 text-lg col-span-full'>
                                         รายการอาหาร
@@ -100,7 +98,7 @@ export default function Set1500() {
                 <div className=' mt-4 text-center' >
                     <Card className='lg:px-20 bg-red-800  rounded-3xl mx-1'>
                         <div className='grid grid-cols-2'>
-                            <Card className=' bg-orange-100'>
+                            <Card className=' bg-orange-100 col-span-2 xl:col-span-1'>
                                 <div className='grid grid-cols-5'>
                                     <p className=' text-start w-full my-3 text-red-800 text-lg col-span-full'>
                                         เงื่อนไข
@@ -112,7 +110,7 @@ export default function Set1500() {
 
 
                                     </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 -ml-16'>
+                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 '>
                                         ราคาดังกล่าว รวมทุกอย่างแล้ว มีโต๊ะ เก้าอี้ จาน ถ้วย ช้อน ตะเกียบ ผ้าคลุมโต๊ะ ผ้าคลุมเก้าอี้ โต็ะมีผ้าคลุม เก้าอี้มีโบว์ผูก สวยงาม สะอาด จัดแบบนี้ทุกราคา…
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-sm col-span-1 border-b border-yellow-300 pb-3'>
@@ -121,7 +119,7 @@ export default function Set1500() {
                                         </svg>
 
                                     </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 -ml-16'>
+                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 '>
                                         เจ้าภาพเตรียม ชุดน้ำเองให้ทางร้านเสิร์ฟวางที่โต๊ะให้
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-sm col-span-1 border-b border-yellow-300 pb-3'>
@@ -131,7 +129,7 @@ export default function Set1500() {
                                         </svg>
 
                                     </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 -ml-16'>
+                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 '>
                                         1 โต๊ะนั่งได้ 8 ท่าน โต๊ะหน้ากว้าง 120 ซม.
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
@@ -141,7 +139,7 @@ export default function Set1500() {
                                         </svg>
 
                                     </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 -ml-16'>
+                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 '>
                                         งานเลี้ยงพระ 9 รูป แนะนำให้จัด 2 โต๊ะ
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
@@ -150,18 +148,19 @@ export default function Set1500() {
                                         </svg>
 
                                     </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 -ml-16'>
+                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3 '>
                                         ทางร้านมีบริการจัด ข้าวและอาหารพระพุทธ เจ้าที่ ศาลพระภูมิ เป็นถ้วยเล็กๆ ให้ฟรี!!! ไม่คิดค่าบริการเพิ่มเติม
                                     </p>
 
                                 </div>
 
                             </Card>
+                            <div className='col-span-2 xl:col-span-1 self-center'>
                             <Image
-                                    height={600}
-                                    width={500}
+                                    className='w-full'
                                     alt='f'
                                     src="/15.jpg" />
+                            </div>
                         </div>
 
 

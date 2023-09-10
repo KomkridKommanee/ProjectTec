@@ -38,14 +38,14 @@ export default function Buffet() {
                 <Example className=" top-10" />
             </header>
             <main>
-                <div className='justify-items-center bg-left-bottom bg-gradient-to-b pb-24 from-red-900 via-red-500 to-yellow-50 min-h-full'>
-                    <div className='text-center bg-gray-950 py-20 bg-opacity-20'>
+                <div className='justify-items-center bg-left-bottom bg-gradient-to-b pb-24 from-red-800 via-red-500 to-yellow-50 min-h-full'>
+                    <div className='text-center bg-black py-10 bg-opacity-20'>
                         <p className='text-3xl text-white'>เลือกรายการบุฟเฟต์</p>
                         <p className=' text-slate-200'>คำนวณราคาตามจำนวนคนและรายการอาหาร</p>
                     </div>
-                    <div className='mx-auto max-w-3xl grid grid-cols-2 gap-2 lg:gap-12 my-20 container justify-items-center '>
+                    <div className='mx-auto max-w-3xl grid grid-cols-2 gap-2 lg:gap-12 my-10 container justify-items-center p-2'>
                         <div className='text-white col-span-2 border-b w-full text-center pb-5 text-lg '>ส่วนที่ 1 เลือกรายการบุฟเฟต์</div>
-                        <Card className='w-full col-span-1 rounded-3xl ' >
+                        <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl ' >
                             <div className=' text-lg mb-3 py-3'>
                                 <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูยำ</p>
                             </div>
@@ -66,7 +66,7 @@ export default function Buffet() {
                             </div>
                         </Card>
                         
-                        <Card className='w-full col-span-1 rounded-3xl'>
+                        <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl'>
                             <div className=' text-lg bg mb-3 py-3'>
                                 <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูข้าวและเส้น</p>
                             </div>
@@ -86,7 +86,7 @@ export default function Buffet() {
                                 <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>หมี่ซั่ว</Checkbox>
                             </div>
                         </Card>
-                        <Card className='w-full col-span-1 rounded-3xl'>
+                        <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl'>
                             <div className=' text-lg bg mb-3 py-3'>
                                 <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูซุปและต้ม</p>
                             </div>
@@ -109,7 +109,7 @@ export default function Buffet() {
                                 <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>กระเพาะปลาเนื้อปู</Checkbox>
                             </div>
                         </Card>
-                        <Card className='w-full col-span-1 rounded-3xl '>
+                        <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl '>
                             <div className=' text-lg bg mb-3 py-3'>
                                 <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูของคาว</p>
                             </div>
@@ -150,7 +150,7 @@ export default function Buffet() {
                                 <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ตุ๋นซี่โครงหมูเยื่อไผ่</Checkbox>
                             </div>
                         </Card>
-                        <Card className='w-full col-span-full max-w-sm rounded-3xl'>
+                        <Card className='w-full text-sm md:text-base col-span-full max-w-sm rounded-3xl'>
                             <div className=' text-lg bg mb-3 py-3'>
                                 <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูของหวาน</p>
                             </div>
@@ -178,15 +178,15 @@ export default function Buffet() {
                             <div className='col-span-9 text-center'>ราคานี้รวมค่าใช้จ่าย ข้าวสวย+ ถ้วย จาน + ช้อนส้อม+ อุปกรณ์ต่างๆ +น้ำดื่มในรูปแบบกดดื่มได้</div>
                             <p className='text-center text-red-800 text-md col-span-full'>(ไม่รวมโต๊ะเก้าอี้)</p>
                         </div>
-                        <div className='col-span-2 text-center md:mt-10 mt-12'>
-                            <p className='mx-auto w-full text-2xl bg-red-100 -mt-8 px-12 py-5 rounded-t-full text-red-800'>รวมราคา <input disabled className='text-center mx-auto w-1/4' value={sum * message} /> บาท</p>
-                        </div>
-                        <Card className='col-span-2 w-full md:-mt-10 -mt-0 rounded-3xl'>
+                        <Card className='col-span-2 w-full md:-mt-5 -mt-0 rounded-3xl'>
                             <div className=' grid grid-cols-3 max-w-xs mx-auto'>
                                 <p className='text-lg col-span-2 mt-1'>ระบุจำนวนคน</p>
                                 <Input onChange={handleChange2} type='number' className="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                         </Card>
+                        <div className='col-span-2 text-center px-12 md:mt-10 mt-12'>
+                            <p className='w-full text-2xl bg-red-100 -mt-8 px-8 py-12 rounded-3xl text-red-800'>รวมราคา <input disabled className='text-center mx-auto w-1/4' value={sum * message} /> บาท</p>
+                        </div>
                         <div className='text-white col-span-2 border-b w-full text-center pb-5 text-lg  md:mt-0 mt-12'>ส่วนที่ 2 กรอกข้อมูลเพื่อรอตอบกลับ</div>
                         <Card className='col-span-2 w-full rounded-3xl md:mt-0 mt-12' title="ข้อมูลติดต่อ">
                             <div className=' grid grid-cols-4 gap-5 max-w-xl mx-auto w-full'>
@@ -218,7 +218,7 @@ export default function Buffet() {
                         <p className='text-sm'>รับจัดโต๊ะจีนและบุฟเฟต์ในจังหวัดเลย</p>
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4 mt-10 max-w-5xl mx-auto mb-24">
+                <div className="grid grid-cols-3 gap-4 mt-10 max-w-5xl mx-auto mb-24 px-3">
                     <Image src='30.jpg' alt='f' />
                     <Image src='28.jpg' alt='f'/>
                     <Image src='14.jpg' alt='f'/>

@@ -73,21 +73,19 @@ export default function Set1800_Form() {
 
             <Card className='bg-white pt-8 w-full lg:mx-36 rounded-3xl'>
                 <div className='w-full my-3 text-red-800 md:text-white text-xl md:text-xl md:bg-red-800 md:px-8 py-2 rounded-3xl'>
-                    โต๊ะจีนราคา1800
+                โต๊ะจีนราคา 1,800 บาท
                 </div>
                 <div className=' mt-4 text-center' >
                    <Card className='lg:px-20 bg-red-800 rounded-3xl mx-1'>
                         <div className='grid grid-cols-2'>
-                        <div className=' my-5'>
-                                <Image
+                        <div className=' my-5 col-span-2 xl:col-span-1 self-center'>
+                                <Image className='h-fit'
                                     src="/16.jpg"
-                                    width={750}
-                                    height={650}
                                     alt="Trulli"
 
                                 />
                                 </div>
-                            <Card className=' bg-orange-100 my-4 '>
+                                <Card className=' bg-orange-100 my-4 col-span-2 xl:col-span-1'>
                                 <div className='grid grid-cols-5'>
                                     <p className=' text-start w-full my-3 text-red-800 text-lg col-span-full'>
                                         รายการอาหาร
@@ -197,7 +195,7 @@ export default function Set1800_Form() {
                 <div className=' mt-4 text-center' >
                     <Card className='lg:px-20 bg-red-800  rounded-3xl mx-1'>
                         <div className='grid grid-cols-2'>
-                            <Card className=' bg-orange-100'>
+                        <Card className=' bg-orange-100 col-span-2 xl:col-span-1'>
                                 <div className='grid grid-cols-6'>
                                     <p className=' text-start w-full my-3 text-red-800 text-lg col-span-full'>
                                         เงื่อนไข
@@ -206,7 +204,7 @@ export default function Set1800_Form() {
                                     <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
                                         จำนวนคน                
                                     </p>
-                                    <Input onChange={handleChange2} id='1' type='Number' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-11'>
+                                    <Input onChange={handleChange2} id='1' type='Number' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
                                     </Input>
                                     <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
                                         คน                
@@ -215,7 +213,7 @@ export default function Set1800_Form() {
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-3  pb-3 '>
                                         จำนวนโต๊ะที่แนะนำ
                                     </p>
-                                    <Input value={total} aria-labelledby='1' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-11'>
+                                    <Input value={total} aria-labelledby='1' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
                                     </Input>
                                     <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
                                         โต๊ะ                
@@ -223,7 +221,7 @@ export default function Set1800_Form() {
                                     <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
                                         จำนวนโต๊ะ                
                                     </p>
-                                    <Input onChange={handleChange3} id='2' type='Number' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-11'>
+                                    <Input onChange={handleChange3} id='2' type='Number' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
                                     </Input>
                                     <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
                                         คน                
@@ -231,7 +229,7 @@ export default function Set1800_Form() {
                                     <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
                                         จำนวนคน                
                                     </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-2' >
+                                    <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-2 ml-8' >
                                         3,000              
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
@@ -240,7 +238,7 @@ export default function Set1800_Form() {
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-3  pb-3 '>
                                         รวมเงิน
                                     </p>
-                                    <Input value={total1} aria-labelledby='2' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-11'>
+                                    <Input value={total1} aria-labelledby='2' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
                                     </Input>
                                     <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
                                         บาท                
@@ -248,11 +246,12 @@ export default function Set1800_Form() {
                                 </div>
 
                             </Card>
+                            <div className='col-span-2 xl:col-span-1 self-center'>
                             <Image
-                                    height={600}
-                                    width={500}
+                                    className='w-full'
                                     alt='f'
-                                    src="/12.jpg" />
+                                    src="/18.jpg" />
+                            </div>
                         </div>
 
 

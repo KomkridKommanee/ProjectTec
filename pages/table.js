@@ -18,18 +18,18 @@ export default function table() {
                         โต๊ะจีนเซ็ต
                     </a>
                     <main>
-                <div className='justify-items-center bg-left-bottom bg-gradient-to-b pb-24 bg-red-800 min-h-full'>
-                    <div className='text-center bg-gray-950 py-20 bg-opacity-20'>
+                    <div className='justify-items-center bg-left-bottom rounded-2xl mt-3 px-2 bg-gradient-to-b pb-10 bg-red-800 min-h-full'>
+                    <div className='text-center py-10 '>
                         <p className='text-3xl text-white'>เลือกราคาโต๊ะจีน</p>
                         <p className=' text-slate-200'>คำนวณราคาตามจำนวนคนและรายการอาหาร</p>
                     </div>
-                    <div className='mx-auto max-w-3xl grid grid-cols-2 gap-2 lg:gap-12 my-20 container justify-items-center '>
+                    <div className='mx-auto max-w-3xl grid grid-cols-2 gap-2 lg:gap-12 my-5 container justify-items-center '>
                         <div className='text-white col-span-2 border-b w-full text-center pb-5 text-lg '></div>
                         <Link href="./Set/Set1300">
                             <Card className='w-full col-span-1 rounded-3xl ' >
                             
                             <div className=' text-lg mb-3 py-3'>
-                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,300</p>
+                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,300 บาท</p>
                             </div>
                             <Image 
                             alt='5'
@@ -41,7 +41,7 @@ export default function table() {
                         <Link href="./Set/Set1500">
                         <Card className='w-full col-span-1 rounded-3xl'>
                             <div className=' text-lg bg mb-3 py-3'>
-                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,500</p>
+                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,500 บาท</p>
                             </div>
                             <Image 
                             alt='5'
@@ -53,7 +53,7 @@ export default function table() {
                         <Link href="./Set/Set1800">
                         <Card className='w-full col-span-1 rounded-3xl'>
                             <div className=' text-lg bg mb-3 py-3'>
-                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,800</p>
+                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,800 บาท</p>
                             </div>
                             <Image 
                             alt='5'
@@ -65,7 +65,7 @@ export default function table() {
                         <Link href="./Set/Set2000">
                         <Card className='w-full col-span-1 rounded-3xl '>
                             <div className=' text-lg bg mb-3 py-3'>
-                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 2,000</p>
+                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 2,000 บาท</p>
                             </div>
                             <Image 
                             alt='5'
@@ -78,7 +78,7 @@ export default function table() {
                         <Link href="./Set/Set2300" >
                         <Card>
                             <div className=' text-lg bg mb-3 py-3'>
-                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 2,300</p>
+                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 2,300 บาท</p>
                             </div>
                             <Image 
                             alt='5'
