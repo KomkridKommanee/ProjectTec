@@ -12,7 +12,7 @@ export default function userMag() {
             </header>
             <main>
                 <div style={{ backgroundColor: '#600c0c' }}>
-                    <div className=' pt-5 md:pt-10 px-2 md:px-5 lg:max-w-7xl mx-auto h-full align-middle justify-center'>
+                    <div className=' pt-2 md:pt-10 px-2 md:px-5 lg:max-w-7xl mx-auto h-full align-middle justify-center'>
                         <Carousel
                             autoplay
                             dotPosition={'top'}

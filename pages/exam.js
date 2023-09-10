@@ -18,7 +18,7 @@ export default function userMag() {
                         <div className='mx-auto max-w-3xl py-20 '>
                             {/* <p className='text-3xl text-white mx-8 md:mx-0'>ผลงาน</p> */}
                             <div className=' text-slate-200 text-lg mx-8 md:mx-0'>เมนูอาหาร<hr className="h-px bg-gray-200 border-0 dark:bg-gray-700"></hr></div>
-                            <div class="grid grid-cols-3 gap-4 mt-10 mb-16">
+                            <div class="grid grid-cols-3 gap-4 mt-10 mb-16 px-3">
                                 <div className="col-span-3">
                                     <Image className=' shadow-lg' src='/krutingfood3.png' alt='f' />
                                 </div>
@@ -41,9 +41,8 @@ export default function userMag() {
                         </div>
                     </div>
 
-                    <div className='bg-opacity-20 bg-gray-950 '>
-                        <div className='mx-auto max-w-3xl py-20 '>
-                            {/* <p className='text-3xl text-end text-white mx-8 md:mx-0'>ผลงาน</p> */}
+                    <div className='bg-opacity-20 bg-gray-900 '>
+                        <div className='mx-auto max-w-3xl py-20 px-3'>
                             <div className=' text-slate-200 text-end text-lg mx-8 md:mx-0'>โต๊ะจีน<hr className="h-px bg-gray-200 border-0 dark:bg-gray-700"></hr></div>
                             <div class="grid grid-cols-3 gap-4 mt-10 mb-16">
                                 <div className='col-span-3 gap-4 grid grid-cols-3'>
@@ -67,7 +66,7 @@ export default function userMag() {
 
                     <div className='mx-auto max-w-2xl py-20 '>
                         <div className='gap-4 grid grid-cols-2 justify-items-center'>
-                            <div className='grid bg-opacity-10 bg-black w-full'>
+                            <div className='grid bg-opacity-10 bg-black w-full px-3'>
                                 <p className=' self-center w-full text-white text-xl text-center'>อาหารเลี้ยงพระ</p>
                             </div>
                             <div className='grid gap-4'>
@@ -77,9 +76,9 @@ export default function userMag() {
                         </div>
                     </div>
 
-                    <div className='bg-opacity-20 bg-gray-950'>
+                    <div className='bg-opacity-20 bg-gray-900'>
                         <div className='mx-auto max-w-2xl py-20 '>
-                            <div className='gap-4 grid grid-cols-2 justify-items-center'>
+                            <div className='gap-4 grid grid-cols-2 justify-items-center px-3'>
                                 <div className='grid gap-4'>
                                     <Image src='/1.png' alt='f'/>
                                     <Image src='/6.jpg' alt='f'/>

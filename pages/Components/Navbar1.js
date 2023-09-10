@@ -80,7 +80,7 @@ export default function Example() {
           >
             <div className="lg:-mt-3 px-4 p-1 lg:py-7 bg-red-700 shadow-xl rounded-full">
               <Image className=" rounded-full w-16 lg:w-16 lg:absolute lg:-mt-5 lg:-my-7 " src="/logoWeb.png" alt='f' width={200} height={200}/>
-              <div className="ml-20 text-white -mt-7 lg:-mt-0" ><p className="lg:-mt-0 -mt-10 lg:pb-0 pb-5" >ครูติ้งโต๊ะจีน</p></div>
+              <div className="ml-20 text-white -mt-7 lg:-mt-0" ><p className="lg:-mt-0 -mt-10 lg:pb-0 pb-5" >ครูติ้งโต๊ะจีน จ.เลย</p></div>
             </div>
           </Typography>
           <div className="flex items-center gap-4">

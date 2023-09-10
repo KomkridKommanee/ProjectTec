@@ -184,8 +184,8 @@ export default function Buffet() {
                                 <Input onChange={handleChange2} type='number' className="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                         </Card>
-                        <div className='col-span-2 text-center px-12 md:mt-10 mt-12'>
-                            <p className='w-full text-2xl bg-red-100 -mt-8 px-8 py-12 rounded-3xl text-red-800'>รวมราคา <input disabled className='text-center mx-auto w-1/4' value={sum * message} /> บาท</p>
+                        <div className='col-span-2 text-center md:mt-0 mt-12 w-full text-black bg-white text-2xl px-5 py-12 rounded-3xl '>
+                            <p className=''>รวมราคา&nbsp;&nbsp;{sum * message}&nbsp;&nbsp;บาท</p> 
                         </div>
                         <div className='text-white col-span-2 border-b w-full text-center pb-5 text-lg  md:mt-0 mt-12'>ส่วนที่ 2 กรอกข้อมูลเพื่อรอตอบกลับ</div>
                         <Card className='col-span-2 w-full rounded-3xl md:mt-0 mt-12' title="ข้อมูลติดต่อ">
