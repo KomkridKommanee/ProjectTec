@@ -76,8 +76,6 @@ export default function Set1300_Form() {
                         <div className=' my-5 col-span-2 xl:col-span-1 self-center'>
                                 <Image className='h-fit'
                                     src="/16.jpg"
-                                    width={750}
-                                    height={650}
                                     alt="Trulli"
 
                                 />
