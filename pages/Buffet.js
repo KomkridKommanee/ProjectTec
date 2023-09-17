@@ -4,6 +4,7 @@ import FooterTab from './Components/footer.js';
 const { TextArea } = Input;
 import React from "react";
 import { useState } from 'react';
+import axios from 'axios';
 
 let all = [];
 
@@ -28,8 +29,29 @@ export default function Buffet() {
     const [message, setMessage] = useState('');
 
     const handleChange2 = (event) => {
-        // 👇 Get input value from "event"
         setMessage(event.target.value);
+    }
+
+// line notify 
+    const [formData, setFormData] = useState({
+        message: '',
+        message2: '',
+        message3: '',
+    });
+
+    const handleInputChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post('/api/notify', formData);
+            alert('Message sent successfully to LINE Notify!');
+            setFormData({ message: '', message2: '', message3: '' }); 
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
     };
 
     return (
@@ -65,7 +87,7 @@ export default function Buffet() {
                                 <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ยำโป๊ยเซียน</Checkbox>
                             </div>
                         </Card>
-                        
+
                         <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl'>
                             <div className=' text-lg bg mb-3 py-3'>
                                 <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูข้าวและเส้น</p>
@@ -185,33 +207,48 @@ export default function Buffet() {
                             </div>
                         </Card>
                         <div className='col-span-2 text-center md:mt-0 mt-12 w-full text-black bg-white text-2xl px-5 py-12 rounded-3xl '>
-                            <p className=''>รวมราคา&nbsp;&nbsp;{sum * message}&nbsp;&nbsp;บาท</p> 
+                            <p className=''>รวมราคา&nbsp;&nbsp;{sum * message}&nbsp;&nbsp;บาท</p>
                         </div>
                         <div className='text-white col-span-2 border-b w-full text-center pb-5 text-lg  md:mt-0 mt-12'>ส่วนที่ 2 กรอกข้อมูลเพื่อรอตอบกลับ</div>
                         <Card className='col-span-2 w-full rounded-3xl md:mt-0 mt-12' title="ข้อมูลติดต่อ">
-                            <div className=' grid grid-cols-4 gap-5 max-w-xl mx-auto w-full'>
-                                <p>ชื่อ - นามสกุล</p>
-                                <Input type='string' className="col-span-3 text-start bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                <p>ที่อยู่</p>
-                                <TextArea
-                                    className='col-span-3  rounded-3xl'
-                                    name="message"
-                                    id="message"
-                                    rows={4}
-                                    defaultValue={''}
-                                />
-                                <p>เบอร์โทรติดต่อ</p>
-                                <Input type='number' rows={4} className="col-span-3 text-start bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                <div className='col-span-4 justify-self-end'>
-                                    <button type="submit" className=' bg-red-700 border-x-yellow-300 border-4 shadow text-white hover:bg-green-400 hover:text-white hover:-translate-y-1 hover:scale-110 transition ease-in-out delay-150 px-6 py-2 rounded-3xl'>
-                                        ยืนยัน
-                                    </button>
-                                </div>
-                            </div>
+                                <form className=' grid grid-cols-4 gap-5 max-w-xl mx-auto w-full' onSubmit={handleSubmit}>
+                                    <p>ชื่อ - นามสกุล</p>
+                                    <Input
+                                        required
+                                        type='text'
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleInputChange}
+                                        className="col-span-3 text-start bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                    <p>ที่อยู่</p>
+                                    <TextArea
+                                        required
+                                        value={formData.message2}
+                                        onChange={handleInputChange}
+                                        className='col-span-3  rounded-3xl'
+                                        name="message2"
+                                        rows={4}
+                                        defaultValue={''}
+                                    />
+                                    <p>เบอร์โทรติดต่อ</p>
+                                    <Input
+                                        required
+                                        type='number'
+                                        name="message3"
+                                        value={formData.message3}
+                                        onChange={handleInputChange}
+                                        rows={4}
+                                        className="col-span-3 text-start bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                        <div className='col-span-full justify-self-end'>
+                                        <button type="submit" className=' bg-red-700 border-x-yellow-300 border-4 shadow text-white hover:bg-green-400 hover:text-white hover:-translate-y-1 hover:scale-110 transition ease-in-out delay-150 px-6 py-2 rounded-3xl'>
+                                            ยืนยัน
+                                        </button>
+                                    </div>
+                                </form>
                         </Card>
                     </div>
                 </div>
-                
+
                 <div className=' bg-red-700 '>
                     <div className='text-white col-span2 md:col-span-1 text-2xl py-10 max-w-5xl mx-10 md:mx-auto font-mono '>
                         <p>ครูติ้งโต๊ะจีน</p>
@@ -220,20 +257,20 @@ export default function Buffet() {
                 </div>
                 <div className="grid grid-cols-3 gap-4 mt-10 max-w-5xl mx-auto mb-24 px-3">
                     <Image src='30.jpg' alt='f' />
-                    <Image src='28.jpg' alt='f'/>
-                    <Image src='14.jpg' alt='f'/>
+                    <Image src='28.jpg' alt='f' />
+                    <Image src='14.jpg' alt='f' />
                     <div className='col-span-3 gap-4 grid grid-cols-3'>
                         <div className='grid'>
-                            <Image src='5.jpg' alt='f'/>
-                            <Image src='4.jpg' alt='f'/>
+                            <Image src='5.jpg' alt='f' />
+                            <Image src='4.jpg' alt='f' />
                         </div>
                         <div className="col-span-2">
-                        <Image  src='13.jpg' alt='f'/>
+                            <Image src='13.jpg' alt='f' />
                         </div>
                     </div>
                 </div>
 
-                
+
                 <FooterTab />
             </main>
         </>
