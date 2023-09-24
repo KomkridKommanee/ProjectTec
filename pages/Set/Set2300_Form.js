@@ -244,7 +244,7 @@ export default function Set2300_Form() {
                                         คน                
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
-                                        จำนวนคน                
+                                        มัดจำ               
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-2 ' >
                                         3,000              
