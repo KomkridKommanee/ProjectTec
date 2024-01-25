@@ -69,107 +69,194 @@ export default function Buffet() {
                         <div className='text-white col-span-2 border-b w-full text-center pb-5 text-lg '>ส่วนที่ 1 เลือกรายการบุฟเฟต์</div>
                         <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl ' >
                             <div className=' text-lg mb-3 py-3'>
-                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูยำ</p>
+                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูลาบ น้ำพริกและเมนูทอด</p>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ยำหมูยอหนัง</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ลาบหมู</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ยำรวมมิตร</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ลาบไก่</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ยำเห็ดหอมกุ้งสด</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ลาบปลาดุก</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ยำใหญ่</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>น้ำพริกลงเรือ</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ยำโป๊ยเซียน</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>น้ำพริกเห็ดฟาง</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>น้ำพริกกระปิ</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>น้ำพริกอ่อง</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>น้ำพริกหนุ่ม</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>น้ำพริกหมูสับ</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ทอดน่องไก่</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ทอดปลา</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ทอดหมูกระเทียม</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ทอดมันปลา</Checkbox>
                             </div>
                         </Card>
 
                         <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl'>
                             <div className=' text-lg bg mb-3 py-3'>
-                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูข้าวและเส้น</p>
+                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูผัด</p>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ข้าวผัดรวม</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดกระเพรา</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ข้าวผัดเกลือ</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดพริกแกง</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ข้าวผัดปู</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดพริกหยวก</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ข้าวผัดกุนเชียง</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดผักรวม</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>หมี่ซั่ว</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดขิง</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดเปรี้ยวหวาน</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ไก่ผัดเม็ดมะม่วง</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดเห็ดสามอย่าง</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดวุ้นเส้น</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดฉ่าไก่-หมู-ดอลลี่</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ไก่ผัดโหระพา</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ปลานิลราดพริก</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ผัดเผ็ดไก่-หมู</Checkbox>
                             </div>
                         </Card>
                         <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl'>
                             <div className=' text-lg bg mb-3 py-3'>
+                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูแกง</p>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงเผ็ด-หมู ไก่</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงเขียวหวาน</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงข่าไก่</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงเทโพ</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงไตปลา</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงคั่วไก่-คั่วกลิ้งหมู</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงส้มปลาทอด</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงส้มไข่-ชะโอม ทอด</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงสายบัว</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงจืดมะระยัดไส้หมูสับ</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงอ่อมหมู</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงเลียง</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงมัสมั่นไก่</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงเห็ดสามอย่าง</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงหน่อไม้</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แกงจืดไชเท้าซี่โครงหมู</Checkbox>
+                            </div>
+                            <div>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แพนงหมู-ไก่</Checkbox>
+                            </div>
+                        </Card>
+                        <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl '>
+                            <div className=' text-lg bg mb-3 py-3'>
                                 <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูซุปและต้ม</p>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มจืดเต้าหู้ไข่</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มยำไก่</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มจืดเต้าหู้สาหร่ายทะเล</Checkbox>
-                            </div>
-                            <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มแซ่บซี่โครงหมู</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มยำปลานิล</Checkbox>
                             </div>
                             <div>
                                 <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มยำปลาน้ำโขง</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>กระเพาะปลาน้ำแดง</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มแซ่บซี่โครงอ่อนหมู</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>กระเพาะปลาเนื้อปู</Checkbox>
-                            </div>
-                        </Card>
-                        <Card className='w-full text-sm md:text-base col-span-1 rounded-3xl '>
-                            <div className=' text-lg bg mb-3 py-3'>
-                                <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูของคาว</p>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มจืดหมูสับ-เต้าหู้ไข่</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ปลานึ่งมะนาว</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มจับฉ่าย</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ปลานึ่งซีอิ๊ว</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มยำขาหมู</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ไก่พะโล้ยอดผัก</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มแซ่บเล้ง</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ปลาสามรส</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ต้มผักกาดดอง</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ปลาลุยสวน</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ตุ๋นซี่ไก่ฟักเห็ดหอม</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แปะซะปลาช่อน</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ตุ๋นเยื่อไผ่</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>แปะซะปลานิล</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ตุ๋นซี่โครงอ่อน</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>พะโล้ขาหมูยอดผัก</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>พะโล้ไข่-หมู</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ตุ๋นน่องไก่มะนาวดอง</Checkbox>
-                            </div>
-                            <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ตุ๋นซี่โครงหมูเยื่อไผ่</Checkbox>
-                            </div>
-                            <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ปลาช่อนลุยสวน</Checkbox>
-                            </div>
-                            <div>
-                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ตุ๋นซี่โครงหมูเยื่อไผ่</Checkbox>
+                                <Checkbox className='px-0 md:px-3 py-1' onChange={handleChange} value={50}>ไข่ลูกเขย</Checkbox>
                             </div>
                         </Card>
                         <Card className='w-full text-sm md:text-base col-span-full max-w-sm rounded-3xl'>
@@ -177,22 +264,19 @@ export default function Buffet() {
                                 <p className='text-center rounded-full text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>เมนูของหวาน</p>
                             </div>
                             <div>
-                                <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>ผลไม้รวม</Checkbox>
-                            </div>
-                            <div>
                                 <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>รวมมิตรกะทิสด</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>ผลไม้กระป๋อง</Checkbox>
+                                <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>เฉาก๊วย</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>ทับทิมกรอบมะพร้าวอ่อน</Checkbox>
+                                <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>สาคู-เผือก-ข้าวโพด</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>บัวลอยมะพร้าวอ่อน</Checkbox>
+                                <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>ทับทิมกรอบ</Checkbox>
                             </div>
                             <div>
-                                <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>โอนี่แปะก๊วย</Checkbox>
+                                <Checkbox className='px-3 py-1' onChange={handleChange} value={30}>ลอดช่อง</Checkbox>
                             </div>
                         </Card>
                         <div className='col-span-2 w-full text-base justify-self-center text-slate-700 bg-red-100 grid grid-cols-10 px-10 py-4 md:mt-0 mt-12 rounded-3xl'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
