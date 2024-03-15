@@ -1,5 +1,5 @@
 import { radio } from '@material-tailwind/react';
-import { Button, Form, Radio, Card, Space, Input, Divider, Image, Checkbox } from 'antd';
+import { Button, Form, Radio, Card, Space, Input, Divider, Image, Checkbox,message } from 'antd';
 import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router';
@@ -19,13 +19,13 @@ export const Login1 = () => {
         // ตรวจสอบว่า username และ password ตรงตามที่กำหนดหรือไม่
         if (username === 'Film' && password === '1234') {
             // ถ้าตรงกันให้ทำการเข้าสู่ระบบ
-            alert('เข้าสู่ระบบสำเร็จ');
+            message.success('เข้าสู่ระบบสำเร็จ');
             router.push('/Admin/Home_Admin');
             // ในที่นี้สามารถเปลี่ยนเส้นทางไปหน้าหลังเข้าสู่ระบบได้โดยการใช้ Router หรือสร้างตัวแปร state เพื่อบอกว่าผู้ใช้ได้เข้าสู่ระบบแล้ว
         } else {
             // ถ้าไม่ตรงให้แสดงข้อความแจ้งเตือน
             console.log('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
-            alert('User หรือ Password ผิด');
+            message.error('User หรือ Password ผิด');
         }
     };
 
