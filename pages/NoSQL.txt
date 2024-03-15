@@ -1,0 +1,70 @@
+Students {
+	StudentID string
+	StudentNo string
+	Username string
+	Password string
+	NameThai string
+	SurThai string
+	NameEng string
+	SurEng string
+	Email string
+	Tel string
+	ImgProfile blob
+	Date date
+	Section string
+	Comments: [
+		{
+			EventID string
+			CommentID string
+			CommentText text
+			CommentDate timestamp
+			StudentID string
+			Username string
+		}
+	]
+}
+
+PublicRelations {
+	EventID string
+	EventName string
+	EventCategoryName string
+	Postdate timestamp
+	UserID string
+	Section string
+	EventImg blob
+	EventDetail string
+	EventStatus boolean
+	EventMore string
+	Comments: [
+		{
+			EventID string
+			CommentID string
+			CommentText string
+			CommentDate timestamp
+			UserID string
+		}
+	]
+}
+
+User {
+	UserID string
+	UserName string
+	Password string
+	NameThai string
+	SurThai string
+	NameEng string
+	SurEng string
+	Email string
+	Tel string
+	ImgProfile blob
+	UserType string
+	Comments: [
+		{
+			EventID string
+			CommentID string
+			CommentText text
+			CommentDate timestamp
+			UserID string
+		}
+	]
+}
