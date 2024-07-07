@@ -7,18 +7,20 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 
 
-export default function InputUser() { // รับ prop setIsDataComplete เพื่อใช้ในการกำหนดสถานะของปุ่ม
+export default function InputStudent() { // รับ prop setIsDataComplete เพื่อใช้ในการกำหนดสถานะของปุ่ม
 
     const [newItem, setNewItem] = useState({
         UserName: '',
         Password: '',
+        StudentNo: '',
         NameThai: '',
         SurnameThai: '',
         NameEng: '',
         SurnameEng: '',
-        UserType: '',
+        Section: '',
         Tel: '',
         Email: '',
+        Bdate: '',
 
     });
 
@@ -27,23 +29,23 @@ export default function InputUser() { // รับ prop setIsDataComplete เพ
     const handleSubmit = async (values) => {
         try {
 
-            await addDoc(collection(db, 'user'), {
+            await addDoc(collection(db, 'student'), {
                 ...values,
 
             });
 
-            message.success('เพิ่มข้อมูลผู้ใช้สำเร็จ');
+            message.success('เพิ่มข้อมูลนักศึกษาสำเร็จ');
         } catch (error) {
             console.error('Failed to submit form:', error);
-            message.error('เพิ่มข้อมูลผู้ใช้สำเร็จไม่สำเร็จ');
+            message.error('เพิ่มข้อมูลนักศึกษาไม่สำเร็จ');
         }
     };
 
 
     // Add item to database
-    const addUser = async (e) => {
+    const addStudent = async (e) => {
         e.preventDefault();
-        if (newItem.UserName !== '' && newItem.Password !== '' && newItem.NameThai !== '' && newItem.SurnameThai !== '' && newItem.NameEng !== '' && newItem.SurnameEng !== '' && newItem.UserType !== '' && newItem.Tel !== '' && newItem.Email !== '') {
+        if (newItem.UserName !== '' && newItem.Password !== '' && newItem.StudentNo !== '' && newItem.NameThai !== '' && newItem.SurnameThai !== '' && newItem.NameEng !== '' && newItem.SurnameEng !== '' && newItem.Section !== '' && newItem.Tel !== '' && newItem.Email !== '' && newItem.Bdate !== '' && newItem.Section !== '') {
             await handleSubmit(newItem);
 
         } else {
@@ -51,22 +53,21 @@ export default function InputUser() { // รับ prop setIsDataComplete เพ
         }
     };
 
-
-useEffect(() => {
-    const fetchData = async () => {
-        const q = query(collection(db, 'user'), orderBy('UserID', 'desc'));
-        const querySnapshot = await getDocs(q);
-        let latestID = 0;
-        querySnapshot.forEach((doc) => {
-            const userID = doc.data().UserID;
-            if (userID > latestID) {
-                latestID = userID;
-            }
-        });
-        setNewItem({ ...newItem, UserID: latestID + 1 });
-    };
-    fetchData();
-}, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            const q = query(collection(db, 'student'), orderBy('StudentID', 'desc'));
+            const querySnapshot = await getDocs(q);
+            let latestID = 0;
+            querySnapshot.forEach((doc) => {
+                const studentID = doc.data().StudentID;
+                if (studentID > latestID) {
+                    latestID = studentID;
+                }
+            });
+            setNewItem({ ...newItem, StudentID: latestID + 1 });
+        };
+        fetchData();
+    }, []);
     // Read items from database
 
     // Delete items from database
@@ -82,14 +83,14 @@ useEffect(() => {
 
                 >
                     <div className='w-full sm:w-full mt-2'>
-                        <label htmlFor="UserName">Username</label>
+                        <label htmlFor="UserName">Username (อีเมลมหาวิทยาลัย)</label>
                         <Form.Item
                             key="UserName"
                             name="UserName"
                             rules={[
                                 {
                                     required: true,
-                                    message: 'กรุณาใส่ Username'
+                                    message: 'กรุณากรอกอีเมลมหาวิทยาลัยราชภัฏเลย'
                                 },
                             ]}
                         >
@@ -119,6 +120,25 @@ useEffect(() => {
                                 iconRender={(visible) => (visible ? <EyeOutlined onClick={(e) => setNewItem({ ...newItem, Password: '' })} /> : <EyeInvisibleOutlined onClick={(e) => setNewItem({ ...newItem, Password: '' })} />)}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             />
+                        </Form.Item>
+                    </div>
+                    <div className='w-full sm:w-full mt-2'>
+                        <label htmlFor="StudentNo">รหัสนักศึกษา</label>
+                        <Form.Item
+                            key="StudentNo"
+                            name="StudentNo"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'กรุณากรอกอีเมลมหาวิทยาลัยราชภัฏเลย'
+                                },
+                            ]}
+                        >
+                            <Input
+
+                                value={newItem.StudentNo}
+                                onChange={(e) => setNewItem({ ...newItem, StudentNo: e.target.value })}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </Form.Item>
                     </div>
                     <div className='mt-2 w-full sm:w-2/4'>
@@ -194,19 +214,24 @@ useEffect(() => {
                         </Form.Item>
                     </div>
                     <div className=' mt-2 w-full sm:w-2/4'>
-                        <label>ระดับผู้ใช้งาน</label>
+                        <label>หมู่เรียน</label>
                         <Form.Item
-                            key="UserType"
-                            name="UserType"
-                            rules={[{ required: true, message: 'กรุณาเลือกระดับผู้ใช้งาน' }]}
+                            key="Section"
+                            name="Section"
+                            rules={[{ required: true, message: 'กรุณาเลือกหมู่เรียน' }]}
                         >
                             <select
-                                value={newItem.UserType}
-                                onChange={(e) => setNewItem({ ...newItem, UserType: e.target.value })}
-                                id="UserType" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected disabled>เลือกระดับผู้ใช้งาน</option>
-                                <option value="แอดมิน">แอดมิน</option>
-                                <option value="อาจารย์">อาจารย์</option>
+                                value={newItem.Section}
+                                onChange={(e) => setNewItem({ ...newItem, Section: e.target.value })}
+                                id="Section" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected disabled>เลือกหมู่เรียน</option>
+                                <option value="ว.6405">ว.6405</option>
+                                <option value="ว.6504">ว.6504</option>
+                                <option value="ว.6604">ว.6604</option>
+                                <option value="ว.6704">ว.6704</option>
+                                <option value="ว.6705">ว.6705</option>
+                                <option value="ว.6707">ว.6707</option>
+
 
                             </select>
                         </Form.Item>
@@ -231,7 +256,27 @@ useEffect(() => {
                         </Form.Item>
                     </div>
                     <div className='w-full sm:w-full mt-2'>
-                        <label htmlFor="Email">อีเมล</label>
+                        <label htmlFor="Bdate">วัน/เดือน/ปีเกิด</label>
+                        <Form.Item
+                            key="Bdate"
+                            name="Bdate"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'กรุณาเลือกวันที่โพสต์',
+                                },
+                            ]}
+                        >
+                            <Input
+                                type="date"
+                                value={newItem.Bdate}
+                                onChange={(e) => setNewItem({ ...newItem, Bdate: e.target.value })}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            />
+                        </Form.Item>
+                    </div>
+                    <div className='w-full sm:w-full mt-2'>
+                        <label htmlFor="Email">อีเมลอื่นๆ</label>
                         <Form.Item
                             key="Email"
                             name="Email"
@@ -253,11 +298,11 @@ useEffect(() => {
                     </div>
                     <div className='w-full sm:w-2/12 mt-10'>
                         <button
-                            onClick={addUser}
+                            onClick={addStudent}
                             type="submit"
                             className="px-4 py-2 bg-green-500 transition ease-in-out delay-75 hover:bg-green-600 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
                         >
-                            เพิ่มข้อมูลผู้ใช้
+                            เพิ่มข้อมูลนักศึกษา
                         </button>
 
                     </div>

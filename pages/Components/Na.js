@@ -4,8 +4,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'หน้าแรก', href: './Home_Admin', current: false },
-  { name: 'จัดการข้อมูลผู้ใช้งาน', href: './UserManagement', current: false },
-  { name: 'จัดการข้อมูลนักศึกษา', href: './UserManagement', current: false },
+  { name: 'จัดการข้อมูลผู้ใช้งาน', href: './User', current: false },
+  { name: 'จัดการข้อมูลนักศึกษา', href: './StudentsManagement', current: false },
   { name: 'จัดการข้อมูลประชาสัมพันธ์', href: './PublicRelationsManagement_Admin', current: false },
 ]
 
@@ -91,16 +91,6 @@ export default function Example2() {
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Settings
                           </a>
                         )}
                       </Menu.Item>

@@ -1,8 +1,8 @@
 import Example2 from '../Components/Na';
 import InputPublicRelation from '../Components/InputPublicRelation';
 import React, { useEffect, useState, useRef } from 'react';
-import { db } from '../api/firebase/firebase';
-import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { db, app } from '../api/firebase/firebase';
+import { collection, getDocs, doc, updateDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
 import { EyeOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons'
 import { Button, Input, Space, Table, Modal, Form, Checkbox, Row, Col, Radio, Switch, Card, Upload } from 'antd';
 import Highlighter from 'react-highlight-words';
@@ -17,6 +17,9 @@ export default function PublicRelationsManagementAdmin() {
     const [data, setData] = useState([]);
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [sections, setSections] = useState([]);
+
+    
 
 
 
@@ -168,12 +171,25 @@ export default function PublicRelationsManagementAdmin() {
     const fetchData = async () => {
         const querySnapshot = await getDocs(collection(db, 'publicrelation'));
         const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    
+
         // Sort the data by Postdate in descending order
         data.sort((a, b) => new Date(b.Postdate) - new Date(a.Postdate));
-    
+
         setData(data);
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const q = query(collection(db, 'section'), orderBy('SectionID', 'desc'));
+          const querySnapshot = await getDocs(q);
+          const sectionsList = [];
+          querySnapshot.forEach((doc) => {
+            sectionsList.push(doc.data());
+          });
+          setSections(sectionsList);
+        };
+        fetchData();
+      }, []);
 
     const handleEdit = (record) => {
         setSelectedItem(record);
@@ -190,6 +206,25 @@ export default function PublicRelationsManagementAdmin() {
         setIsEditModalVisible(false);
     };
 
+    const handleLevelEventChange = (values) => {
+        if (values.includes('สาธารณะ(ทุกคน)')) {
+            setEditedItem({
+                ...editedItem,
+                LevelEvent: sections.map(section => section.Section).concat('สาธารณะ(ทุกคน)')
+            });
+        } else {
+            setEditedItem({ ...editedItem, LevelEvent: values });
+        }
+    };
+
+    const handleSelectAllChange = (e) => {
+        const checked = e.target.checked;
+        if (checked) {
+            setEditedItem({ ...editedItem, LevelEvent: sections.map(section => section.Section) });
+        } else {
+            setEditedItem({ ...editedItem, LevelEvent: [] });
+        }
+    };
 
 
 
@@ -323,9 +358,15 @@ export default function PublicRelationsManagementAdmin() {
 
                                     <label htmlFor="EventImg">รูปข้อมูลประชาสัมพันธ์</label>
                                     <Form.Item >
-                                        <Upload showUploadList={false}>
+                                        <div
+                                            listType="picture-card"
+                                            showUploadList={false}
 
-                                        </Upload>
+                                        >
+                                            <div className=" items-center justify-items-center">
+                                                <img src={selectedItem.EventImg} alt="event" style={{ maxWidth: '100%' }} />
+                                            </div>
+                                        </div>
                                     </Form.Item>
                                 </div>
                                 <div className='w-full sm:w-full mt-2'>
@@ -358,23 +399,15 @@ export default function PublicRelationsManagementAdmin() {
                                     <Form.Item>
                                         <Checkbox.Group value={selectedItem.LevelEvent} disabled style={{ width: '100%' }}>
                                             <Row>
-                                                <Col span={12}>
-                                                    <Checkbox value='อาจารย์'>อาจารย์</Checkbox>
-                                                </Col>
-                                                <Col span={12}>
-                                                    <Checkbox value='นักศึกษาปีที่1'>นักศึกษาปีที่1</Checkbox>
-                                                </Col>
-                                                <Col span={12}>
-                                                    <Checkbox value='นักศึกษาปีที่2'>นักศึกษาปีที่2</Checkbox>
-                                                </Col>
-                                                <Col span={12}>
-                                                    <Checkbox value='นักศึกษาปีที่3'>นักศึกษาปีที่3</Checkbox>
-                                                </Col>
-                                                <Col span={12}>
-                                                    <Checkbox value='นักศึกษาปีที่4'>นักศึกษาปีที่4</Checkbox>
-                                                </Col>
-                                                <Col span={12}>
-                                                    <Checkbox value='สาธารณะ(ทุกคน)'>สาธารณะ(ทุกคน)</Checkbox>
+                                                {sections.map((section) => (
+                                                    <Col span={12} key={section.SectionID}>
+                                                        <Checkbox value={section.Section}>{section.Section}</Checkbox>
+                                                    </Col>
+                                                ))}
+                                                <Col span={24}>
+                                                    <Checkbox value="สาธารณะ(ทุกคน)" onChange={handleSelectAllChange}>
+                                                        สาธารณะ(ทุกคน)
+                                                    </Checkbox>
                                                 </Col>
                                             </Row>
                                         </Checkbox.Group>
