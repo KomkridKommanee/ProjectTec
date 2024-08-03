@@ -216,12 +216,12 @@ export default function Set2000_Form() {
                                     </p>
                                     
                                     <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
-                                        จำนวนคน                
+                                    จำนวนการ์ดเชิญ                
                                     </p>
                                     <Input onChange={handleChange2} id='2' type='Number' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
                                     </Input>
                                     <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
-                                        คน                
+                                    การ์ด                
                                     </p>
                                     
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-3  pb-3 '>
