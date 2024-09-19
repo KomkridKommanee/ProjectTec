@@ -3,32 +3,23 @@ import InputUser from '../Components/InputUser';
 import EditUser from '../Components/EditUser';
 import React, { useEffect, useState, useRef } from 'react';
 import { db } from '../api/firebase/firebase';
-import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons'
-import { Button, Input, Space, Table, Modal, Form, Checkbox, Row, Col, Radio } from 'antd';
+import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
+import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
+import { Button, Input, Space, Table, Modal, Form } from 'antd';
 import Highlighter from 'react-highlight-words';
 
-
 export default function UserManagement() {
-    
-
-
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
-
-    const handleCancel = () => {
-        setIsEditModalVisible(false);
-    };
-
-
-
-
-
-
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
     const [data, setData] = useState([]);
+    const [isAddOpen, setIsAddOpen] = useState(false);
+
+    const handleCancel = () => {
+        setIsEditModalVisible(false);
+    };
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -43,120 +34,42 @@ export default function UserManagement() {
 
     const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-            <div
-                style={{
-                    padding: 8,
-                }}
-                onKeyDown={(e) => e.stopPropagation()}
-            >
+            <div style={{ padding: 8 }}>
                 <Input
                     ref={searchInput}
                     placeholder={`Search ${dataIndex}`}
                     value={selectedKeys[0]}
                     onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
                     onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                    style={{
-                        marginBottom: 8,
-                        display: 'block',
-                    }}
+                    style={{ marginBottom: 8, display: 'block' }}
                 />
                 <Space>
-                    <Button
-                        type="primary"
-                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                        icon={<SearchOutlined />}
-                        size="small"
-                        style={{
-                            width: 90,
-                        }}
-                    >
+                    <Button type="primary" onClick={() => handleSearch(selectedKeys, confirm, dataIndex)} icon={<SearchOutlined />} size="small" style={{ width: 90 }}>
                         Search
                     </Button>
-                    <Button
-                        onClick={() => clearFilters && handleReset(clearFilters)}
-                        size="small"
-                        style={{
-                            width: 90,
-                        }}
-                    >
+                    <Button onClick={() => clearFilters && handleReset(clearFilters)} size="small" style={{ width: 90 }}>
                         Reset
                     </Button>
-                    <Button
-                        type="link"
-                        size="small"
-                        onClick={() => {
-                            confirm({
-                                closeDropdown: false,
-                            });
-                            setSearchText(selectedKeys[0]);
-                            setSearchedColumn(dataIndex);
-                        }}
-                    >
-                        Filter
-                    </Button>
-                    <Button
-                        type="link"
-                        size="small"
-                        onClick={() => {
-                            close();
-                        }}
-                    >
-                        close
+                    <Button type="link" size="small" onClick={() => close()}>
+                        Close
                     </Button>
                 </Space>
             </div>
         ),
-        filterIcon: (filtered) => (
-            <SearchOutlined
-                style={{
-                    color: filtered ? '#1677ff' : undefined,
-                }}
-            />
-        ),
-        onFilter: (value, record) =>
-            record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-        onFilterDropdownOpenChange: (visible) => {
-            if (visible) {
-                setTimeout(() => searchInput.current?.select(), 100);
-            }
-        },
-        render: (text) =>
-            searchedColumn === dataIndex ? (
-                <Highlighter
-                    highlightStyle={{
-                        backgroundColor: '#ffc069',
-                        padding: 0,
-                    }}
-                    searchWords={[searchText]}
-                    autoEscape
-                    textToHighlight={text ? text.toString() : ''}
-                />
-            ) : (
-                text
-            ),
+        filterIcon: (filtered) => <SearchOutlined style={{ color: filtered ? '#1677ff' : undefined }} />,
+        onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        render: (text) => (searchedColumn === dataIndex ? <Highlighter highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }} searchWords={[searchText]} autoEscape textToHighlight={text ? text.toString() : ''} /> : text),
     });
 
     useEffect(() => {
-        const fetchData = async () => {
-            const querySnapshot = await getDocs(collection(db, 'user'));
-            const documents = querySnapshot.docs.map(doc => doc.data());
-            setData(documents);
-        };
         fetchData();
     }, []);
 
-
-    const [setIsModaladd, setIsAddOpen] = useState(false);
-
-
-    const showAdd = () => {
-        setIsAddOpen(true);
+    const fetchData = async () => {
+        const querySnapshot = await getDocs(collection(db, 'user'));
+        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setData(data.sort((a, b) => a.UserID - b.UserID)); // เรียงตาม UserID
     };
-    const cancelAdd = () => {
-        setIsAddOpen(false);
-    };
-
-
 
     const handleDelete = (record) => {
         Modal.confirm({
@@ -167,73 +80,39 @@ export default function UserManagement() {
             onOk() {
                 deleteRecord(record);
             },
-            onCancel() {
-                console.log('ยกเลิกการลบข้อมูล');
-            },
         });
     };
-    
+
     const deleteRecord = async (record) => {
         try {
-            await deleteDoc(doc(db, 'user', record.id)); // ใช้ record.id แทน record.key
-            const updatedData = data.filter(item => item.id !== record.id); // ใช้ item.id แทน item.key
+            await deleteDoc(doc(db, 'user', record.id));
+            const updatedData = data.filter((item) => item.id !== record.id);
             setData(updatedData);
             console.log('Document successfully deleted!');
         } catch (error) {
             console.error('Error deleting document: ', error);
         }
     };
-    
 
-    const onSubmit = async (values) => {
-        // Perform any necessary actions with the form values, such as saving them to a database
-        console.log('Form values:', values);
-    
-        // Close the modal after the form is submitted
-        setIsModaladd(false);
-    
-        // Optionally, you can fetch the updated data here
-        fetchData();
+    const handleEdit = (record) => {
+        setSelectedItem(record);
+        setIsEditModalVisible(true);
     };
 
-    
-    const [isViewModalVisible, setIsViewModalVisible] = useState(false);
-
-
-    const showViewModal = (item) => {
-        setSelectedItem(item);
-        setIsViewModalVisible(true);
+    const handleUpdate = (updatedItem) => {
+        const updatedData = data.map((item) => (item.id === updatedItem.id ? updatedItem : item));
+        setData(updatedData);
+        setIsEditModalVisible(false);
     };
-
-//แก้ไข
-
-useEffect(() => {
-    fetchData();
-}, []);
-const fetchData = async () => {
-    const querySnapshot = await getDocs(collection(db, 'user'));
-    const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    setData(data);
-};
-
-const handleEdit = (record) => {
-    setSelectedItem(record);
-    setIsEditModalVisible(true);
-};
-
-const handleUpdate = (updatedItem) => {
-    const updatedData = data.map((item) => (item.id === updatedItem.id ? updatedItem : item));
-    setData(updatedData);
-    setIsEditModalVisible(false);
-};
-
-
-    
-
-
-
 
     const columns = [
+        {
+            title: 'ลำดับที่',
+            dataIndex: 'UserID',
+            key: 'UserID',
+            sorter: (a, b) => a.UserID - b.UserID,
+            width: '15%',
+        },
         {
             title: 'ชื่อ-นามสกุลข้อมูลผู้ใช้',
             key: 'FullName',
@@ -255,13 +134,10 @@ const handleUpdate = (updatedItem) => {
                 <Button
                     icon={<EditOutlined />}
                     onClick={() => handleEdit(record)}
-                    className="flex items-center justify-center  px-4 py-2 bg-yellow-400 transition ease-in-out delay-75 hover:bg-yellow-500 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
-                >
-                    
-                </Button>
+                    className="flex items-center justify-center px-4 py-2 bg-yellow-400 transition ease-in-out hover:bg-yellow-500 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
+                />
             ),
         },
-
         {
             title: 'ลบ',
             width: '10%',
@@ -269,54 +145,34 @@ const handleUpdate = (updatedItem) => {
                 <Button
                     icon={<DeleteOutlined />}
                     onClick={() => handleDelete(record)}
-                    className="flex items-center justify-center  px-4 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
-                >
-                    
-                </Button>
+                    className="flex items-center justify-center px-4 py-2 bg-red-600 transition ease-in-out hover:bg-red-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
+                />
             ),
         },
     ];
 
     return (
         <>
-            <Example2 className=" top-10" />
-            <div className=' justify-self-center py-5 md:py-7 shadow-xl'>
-                <p className=' text-3xl md:text-2xl text-start pl-44 font-bold'>จัดการข้อมูลผู้ใช้งาน</p>
+            <Example2 className="top-10" />
+            <div className="justify-self-center py-5 md:py-7 shadow-xl bg-gradient-to-r from-cyan-600 to-blue-500">
+                <p className="text-3xl md:text-2xl text-white text-start font-bold pl-44">จัดการข้อมูลผู้ใช้งาน</p>
             </div>
-            <Form className="mx-auto max-w-7xl grid grid-cols-2 gap-2 lg:gap-12 my-10 container justify-items-center p-2">
-                <div></div>
-
-                <div className="flex flex-col col-span-2 border-b w-full text-center pb-5 text-lg">
-                    <div className="flex justify-end mb-2">
-                        <button type="button" onClick={showAdd} className="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-cyan-700 to-cyan-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-110 hover:rotate-2 hover:bg-cyan-700 hover:text-cyan-200 hover:shadow-lg active:opacity-85">
-                            เพิ่มข้อมูลผู้ใช้
-                        </button>
-                    </div>
-                    <Table columns={columns} dataSource={data} />
+            <Form className="mx-auto max-w-7xl my-10">
+                <div className="flex justify-end mb-4">
+                    <button onClick={() => setIsAddOpen(true)} className="bg-green-500 text-white transition ease-in-out hover:bg-green-600 px-6 py-2 rounded-lg font-bold shadow-md hover:-translate-y-1 hover:scale-110">
+                        เพิ่มข้อมูลผู้ใช้
+                    </button>
                 </div>
+                <Table columns={columns} dataSource={data} rowKey="id" pagination={{ pageSize: 6 }} />
             </Form>
-            <Modal
-                width={'90%'}
-                title="แก้ไขข้อมูลผู้ใช้งาน"
-                open={isEditModalVisible}
-                onCancel={handleCancel}
-                footer={null} // Set footer to null to hide the default footer
-            >
-                <EditUser selectedItem={selectedItem} onCancel={handleCancel} onUpdate={handleUpdate}  />
+
+            <Modal width={'90%'} title="แก้ไขข้อมูลผู้ใช้งาน" open={isEditModalVisible} onCancel={handleCancel} footer={null}>
+                <EditUser selectedItem={selectedItem} onCancel={handleCancel} onUpdate={handleUpdate} />
             </Modal>
 
-            <Modal
-                width={'90%'}
-                title="เพิ่มข้อมูลผู้ใช้งาน"
-                open={setIsModaladd}
-                onCancel={cancelAdd}
-                footer={[
-
-                ]}
-            >
-                {/* Pass the onSubmit function to the InputUser component */}
-                <InputUser onSubmit={onSubmit} />
+            <Modal width={'90%'} title="เพิ่มข้อมูลผู้ใช้งาน" open={isAddOpen} onCancel={() => setIsAddOpen(false)} footer={null}>
+                <InputUser onSubmit={handleUpdate} onClose={() => setIsAddOpen(false)}/>
             </Modal>
         </>
-    )
+    );
 }

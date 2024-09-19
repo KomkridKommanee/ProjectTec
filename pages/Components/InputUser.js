@@ -7,7 +7,7 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 
 
-export default function InputUser() { // รับ prop setIsDataComplete เพื่อใช้ในการกำหนดสถานะของปุ่ม
+export default function InputUser({ onClose }) { // รับ prop setIsDataComplete เพื่อใช้ในการกำหนดสถานะของปุ่ม
 
     const [newItem, setNewItem] = useState({
         UserName: '',
@@ -33,6 +33,7 @@ export default function InputUser() { // รับ prop setIsDataComplete เพ
             });
 
             message.success('เพิ่มข้อมูลผู้ใช้สำเร็จ');
+            onClose();
         } catch (error) {
             console.error('Failed to submit form:', error);
             message.error('เพิ่มข้อมูลผู้ใช้สำเร็จไม่สำเร็จ');
@@ -43,9 +44,18 @@ export default function InputUser() { // รับ prop setIsDataComplete เพ
     // Add item to database
     const addUser = async (e) => {
         e.preventDefault();
-        if (newItem.UserName !== '' && newItem.Password !== '' && newItem.NameThai !== '' && newItem.SurnameThai !== '' && newItem.NameEng !== '' && newItem.SurnameEng !== '' && newItem.UserType !== '' && newItem.Tel !== '' && newItem.Email !== '') {
+        if (
+            newItem.UserName !== '' &&
+            newItem.Password !== '' &&
+            newItem.NameThai !== '' &&
+            newItem.SurnameThai !== '' &&
+            newItem.NameEng !== '' &&
+            newItem.SurnameEng !== '' &&
+            newItem.UserType !== '' &&
+            newItem.Tel !== '' &&
+            newItem.Email !== ''
+        ) {
             await handleSubmit(newItem);
-
         } else {
             message.error('กรุณากรอกข้อมูลให้ครบทุกช่อง');
         }
@@ -91,10 +101,13 @@ useEffect(() => {
                                     required: true,
                                     message: 'กรุณาใส่ Username'
                                 },
+                                {
+                                    pattern: /^[A-Za-z]+$/,
+                                    message: 'Username ต้องเป็นตัวอักษรภาษาอังกฤษเท่านั้น',
+                                },
                             ]}
                         >
-                            <Input
-
+                             <Input
                                 value={newItem.UserName}
                                 onChange={(e) => setNewItem({ ...newItem, UserName: e.target.value })}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
@@ -109,6 +122,10 @@ useEffect(() => {
                                 {
                                     required: true,
                                     message: 'กรุณาใส่ Password'
+                                },
+                                {
+                                    pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
+                                    message: 'Password ต้องมีตัวอักษรและตัวเลข อย่างน้อย 6 ตัวอักษร',
                                 },
                             ]}
                         >
@@ -131,6 +148,10 @@ useEffect(() => {
                                     required: true,
                                     message: 'กรุณาใส่ชื่อภาษาไทย'
                                 },
+                                {
+                                    pattern: /^[ก-๙]+$/,
+                                    message: 'ชื่อภาษาไทยต้องเป็นตัวอักษรภาษาไทยเท่านั้น',
+                                },
                             ]}
                         >
                             <Input
@@ -148,6 +169,10 @@ useEffect(() => {
                                 {
                                     required: true,
                                     message: 'กรุณาใส่นามสกุลภาษาไทย'
+                                },
+                                {
+                                    pattern: /^[ก-๙]+$/,
+                                    message: 'นามสกุลภาษาไทยต้องเป็นตัวอักษรภาษาไทยเท่านั้น',
                                 },
                             ]}
                         >
@@ -167,6 +192,10 @@ useEffect(() => {
                                     required: true,
                                     message: 'กรุณาใส่ชื่อภาษาอังกฤษ'
                                 },
+                                {
+                                    pattern: /^[A-Za-z]+$/,
+                                    message: 'ชื่อภาษาอังกฤษต้องเป็นตัวอักษรภาษาอังกฤษเท่านั้น',
+                                },
                             ]}
                         >
                             <Input
@@ -184,6 +213,10 @@ useEffect(() => {
                                 {
                                     required: true,
                                     message: 'กรุณาใส่นามสกุลภาษาอังกฤษ'
+                                },
+                                {
+                                    pattern: /^[A-Za-z]+$/,
+                                    message: 'นามสกุลภาษาอังกฤษต้องเป็นตัวอักษรภาษาอังกฤษเท่านั้น',
                                 },
                             ]}
                         >
@@ -221,10 +254,13 @@ useEffect(() => {
                                     required: true,
                                     message: 'กรุณาใส่เบอร์โทรศัพท์'
                                 },
+                                {
+                                    pattern: /^[0-9]{10}$/,
+                                    message: 'เบอร์โทรศัพท์ต้องเป็นตัวเลข 10 หลัก',
+                                },
                             ]}
                         >
                             <Input
-                                type='tel'
                                 value={newItem.Tel}
                                 onChange={(e) => setNewItem({ ...newItem, Tel: e.target.value })}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
@@ -239,6 +275,10 @@ useEffect(() => {
                                 {
                                     required: true,
                                     message: 'กรุณาใส่อีเมล',
+                                },
+                                {
+                                    type: 'email',
+                                    message: 'รูปแบบอีเมลไม่ถูกต้อง',
                                 },
                             ]}
                         >
@@ -263,5 +303,5 @@ useEffect(() => {
                     </div>
                 </Form>
             </Card></div>
-    )
+    );
 }

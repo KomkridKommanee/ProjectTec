@@ -1,13 +1,12 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
-import { Button, Checkbox, Form, Input, Radio, Card, Select, Modal, Row, Col } from 'antd';
-import { message, Upload } from 'antd';
-import { collection, addDoc, updateDoc, doc, getDocs, orderBy, query } from 'firebase/firestore'; // เพิ่ม updateDoc และ doc
+import { Button, Checkbox, Form, Input, Radio, Card, Select, Modal, Row, Col, message, Upload } from 'antd';
+import { collection, addDoc, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../api/firebase/firebase';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 
 
-export default function InputStudent() { // รับ prop setIsDataComplete เพื่อใช้ในการกำหนดสถานะของปุ่ม
+export default function InputStudent({ onClose }) { // รับ prop setIsDataComplete เพื่อใช้ในการกำหนดสถานะของปุ่ม
 
     const [newItem, setNewItem] = useState({
         UserName: '',
@@ -21,40 +20,35 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
         Tel: '',
         Email: '',
         Bdate: '',
-
     });
 
 
+    const [sections, setSections] = useState([]);
 
     const handleSubmit = async (values) => {
         try {
-
             await addDoc(collection(db, 'student'), {
                 ...values,
-
             });
-
             message.success('เพิ่มข้อมูลนักศึกษาสำเร็จ');
+            onClose();
         } catch (error) {
             console.error('Failed to submit form:', error);
             message.error('เพิ่มข้อมูลนักศึกษาไม่สำเร็จ');
         }
     };
 
-
-    // Add item to database
     const addStudent = async (e) => {
         e.preventDefault();
-        if (newItem.UserName !== '' && newItem.Password !== '' && newItem.StudentNo !== '' && newItem.NameThai !== '' && newItem.SurnameThai !== '' && newItem.NameEng !== '' && newItem.SurnameEng !== '' && newItem.Section !== '' && newItem.Tel !== '' && newItem.Email !== '' && newItem.Bdate !== '' && newItem.Section !== '') {
+        if (Object.values(newItem).every((field) => field !== '')) {
             await handleSubmit(newItem);
-
         } else {
             message.error('กรุณากรอกข้อมูลให้ครบทุกช่อง');
         }
     };
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchStudentID = async () => {
             const q = query(collection(db, 'student'), orderBy('StudentID', 'desc'));
             const querySnapshot = await getDocs(q);
             let latestID = 0;
@@ -64,22 +58,26 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                     latestID = studentID;
                 }
             });
-            setNewItem({ ...newItem, StudentID: latestID + 1 });
+            setNewItem((prevItem) => ({ ...prevItem, StudentID: latestID + 1 }));
         };
-        fetchData();
+
+        const fetchSections = async () => {
+            const querySnapshot = await getDocs(collection(db, 'section'));
+            const fetchedSections = querySnapshot.docs.map((doc) => doc.data().Section);
+            setSections(fetchedSections);
+        };
+
+        fetchStudentID();
+        fetchSections();
     }, []);
-    // Read items from database
-
-    // Delete items from database
-
 
     return (
         <div className="flex min-h-full items-center justify-center mt-6 sm:px-6 lg:px-8">
             <Card style={{ width: "90%" }}>
                 <Form
                     layout="inline"
-                    name='publicrelationForm'
-                    onFinish={handleSubmit}
+                    name='studentForm'
+                    onFinish={addStudent}
 
                 >
                     <div className='w-full sm:w-full mt-2'>
@@ -91,6 +89,10 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                                 {
                                     required: true,
                                     message: 'กรุณากรอกอีเมลมหาวิทยาลัยราชภัฏเลย'
+                                },
+                                {
+                                    pattern: /^sb\d{10}@lru\.ac\.th$/,
+                                    message: 'Username ต้องเริ่มต้นด้วย sb ตามด้วยตัวเลข 10 ตัว และตามด้วย @lru.ac.th',
                                 },
                             ]}
                         >
@@ -111,6 +113,10 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                                     required: true,
                                     message: 'กรุณาใส่ Password'
                                 },
+                                {
+                                    pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
+                                    message: 'Password ต้องมีตัวอักษรและตัวเลข อย่างน้อย 6 ตัวอักษร',
+                                },
                             ]}
                         >
                             <Input.Password
@@ -130,7 +136,15 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                             rules={[
                                 {
                                     required: true,
-                                    message: 'กรุณากรอกอีเมลมหาวิทยาลัยราชภัฏเลย'
+                                    message: 'กรุณาใส่รหัสนักศึกษา',
+                                },
+                                {
+                                    validator: (_, value) => {
+                                        if (value === newItem.UserName.slice(2, 12)) {
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(new Error('รหัสนักศึกษาต้องตรงกับตัวเลข 10 ตัวใน Username'));
+                                    },
                                 },
                             ]}
                         >
@@ -151,6 +165,10 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                                     required: true,
                                     message: 'กรุณาใส่ชื่อภาษาไทย'
                                 },
+                                {
+                                    pattern: /^[ก-๙]+$/,
+                                    message: 'ชื่อภาษาไทยต้องเป็นตัวอักษรภาษาไทยเท่านั้น',
+                                },
                             ]}
                         >
                             <Input
@@ -168,6 +186,10 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                                 {
                                     required: true,
                                     message: 'กรุณาใส่นามสกุลภาษาไทย'
+                                },
+                                {
+                                    pattern: /^[ก-๙]+$/,
+                                    message: 'นามสกุลภาษาไทยต้องเป็นตัวอักษรภาษาไทยเท่านั้น',
                                 },
                             ]}
                         >
@@ -187,6 +209,10 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                                     required: true,
                                     message: 'กรุณาใส่ชื่อภาษาอังกฤษ'
                                 },
+                                {
+                                    pattern: /^[A-Za-z]+$/,
+                                    message: 'ชื่อภาษาอังกฤษต้องเป็นตัวอักษรภาษาอังกฤษเท่านั้น',
+                                },
                             ]}
                         >
                             <Input
@@ -205,6 +231,10 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                                     required: true,
                                     message: 'กรุณาใส่นามสกุลภาษาอังกฤษ'
                                 },
+                                {
+                                    pattern: /^[A-Za-z]+$/,
+                                    message: 'นามสกุลภาษาอังกฤษต้องเป็นตัวอักษรภาษาอังกฤษเท่านั้น',
+                                },
                             ]}
                         >
                             <Input
@@ -213,7 +243,7 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </Form.Item>
                     </div>
-                    <div className=' mt-2 w-full sm:w-2/4'>
+                    <div className='mt-2 w-full sm:w-2/4'>
                         <label>หมู่เรียน</label>
                         <Form.Item
                             key="Section"
@@ -223,16 +253,13 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                             <select
                                 value={newItem.Section}
                                 onChange={(e) => setNewItem({ ...newItem, Section: e.target.value })}
-                                id="Section" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                id="Section"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            >
                                 <option selected disabled>เลือกหมู่เรียน</option>
-                                <option value="ว.6405">ว.6405</option>
-                                <option value="ว.6504">ว.6504</option>
-                                <option value="ว.6604">ว.6604</option>
-                                <option value="ว.6704">ว.6704</option>
-                                <option value="ว.6705">ว.6705</option>
-                                <option value="ว.6707">ว.6707</option>
-
-
+                                {sections.map((section, index) => (
+                                    <option key={index} value={section}>{section}</option>
+                                ))}
                             </select>
                         </Form.Item>
                     </div>
@@ -246,10 +273,13 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                                     required: true,
                                     message: 'กรุณาใส่เบอร์โทรศัพท์'
                                 },
+                                {
+                                    pattern: /^[0-9]{10}$/,
+                                    message: 'เบอร์โทรศัพท์ต้องเป็นตัวเลข 10 หลัก',
+                                },
                             ]}
                         >
                             <Input
-                                type='tel'
                                 value={newItem.Tel}
                                 onChange={(e) => setNewItem({ ...newItem, Tel: e.target.value })}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
@@ -285,6 +315,10 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                                     required: true,
                                     message: 'กรุณาใส่อีเมล',
                                 },
+                                {
+                                    type: 'email',
+                                    message: 'รูปแบบอีเมลไม่ถูกต้อง',
+                                },
                             ]}
                         >
                             <Input
@@ -299,7 +333,8 @@ export default function InputStudent() { // รับ prop setIsDataComplete เ
                     <div className='w-full sm:w-2/12 mt-10'>
                         <button
                             onClick={addStudent}
-                            type="submit"
+                            type="primary"
+                            htmlType="submit"
                             className="px-4 py-2 bg-green-500 transition ease-in-out delay-75 hover:bg-green-600 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110"
                         >
                             เพิ่มข้อมูลนักศึกษา

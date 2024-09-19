@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -19,5 +20,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app); // เพิ่ม initialize Storage
+const auth = getAuth(app); // Initialize Authentication
 
-export { db, storage }; // แก้ไขการ export เพื่อรวม Storage ด้วย
+export { db, storage, auth }; // แก้ไขการ export เพื่อรวม Storage ด้วย

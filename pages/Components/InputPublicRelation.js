@@ -5,7 +5,7 @@ import { collection, addDoc, getDocs, orderBy, query } from 'firebase/firestore'
 import { db, app } from '../api/firebase/firebase';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-export default function InputPublicRelation() {
+export default function InputPublicRelation({ onClose }) {
     const [newItem, setNewItem] = useState({
         EventName: '',
         EventDetail: '',
@@ -23,14 +23,21 @@ export default function InputPublicRelation() {
     const handleSelectAllChange = (e) => {
         const checked = e.target.checked;
         if (checked) {
-            setNewItem({ ...newItem, LevelEvent: sections.map(section => section.Section) });
+            setNewItem({ ...newItem, LevelEvent: sections.map(section => section.Section).concat('อาจารย์') });
         } else {
             setNewItem({ ...newItem, LevelEvent: [] });
         }
     };
 
-    const onChange = (checkedValues) => {
-        setNewItem({ ...newItem, LevelEvent: checkedValues });
+    const handleLevelEventChange = (values) => {
+        if (values.includes('สาธารณะ(ทุกคน)')) {
+            setNewItem({
+                ...newItem,
+                LevelEvent: sections.map(section => section.Section).concat('อาจารย์', 'สาธารณะ(ทุกคน)')
+            });
+        } else {
+            setNewItem({ ...newItem, LevelEvent: values });
+        }
     };
 
     const handleUpload = async () => {
@@ -75,6 +82,9 @@ export default function InputPublicRelation() {
                 Postdate: '',
                 EventImg: null,
             });
+
+            // ปิด Modal หลังจากเพิ่มข้อมูลสำเร็จ
+            onClose();
         } catch (error) {
             console.error('Failed to submit form:', error);
             message.error('เพิ่มข้อมูลประชาสัมพันธ์ไม่สำเร็จ');
@@ -99,6 +109,18 @@ export default function InputPublicRelation() {
     };
 
     useEffect(() => {
+        const fetchEventID = async () => {
+            const q = query(collection(db, 'publicrelation'), orderBy('EventID', 'desc'));
+            const querySnapshot = await getDocs(q);
+            let latestID = 0;
+            querySnapshot.forEach((doc) => {
+                const eventID = doc.data().EventID;
+                if (eventID > latestID) {
+                    latestID = eventID;
+                }
+            });
+            setNewItem((prevItem) => ({ ...prevItem, EventID: latestID + 1 }));
+        };
         const fetchData = async () => {
             const q = query(collection(db, 'section'), orderBy('SectionID', 'desc'));
             const querySnapshot = await getDocs(q);
@@ -109,18 +131,19 @@ export default function InputPublicRelation() {
             setSections(sectionsList);
         };
         fetchData();
+        fetchEventID();
     }, []);
 
     return (
         <div className="flex min-h-full items-center justify-center mt-6 sm:px-6 lg:px-8">
             <Card style={{ width: "90%" }}>
-                <Form
+            <Form
                     layout="inline"
                     name='publicrelationForm'
                     onFinish={addItem}
                 >
                     <div className='w-full sm:w-full mt-2'>
-                        <label htmlFor="EventImg">รูปข้อมูลประชาสัมพันธ์</label>
+                        <label htmlFor="EventImg" className=' font-bold '>รูปข้อมูลประชาสัมพันธ์</label>
                         <Form.Item
                             name="EventImg"
                             rules={[
@@ -152,7 +175,7 @@ export default function InputPublicRelation() {
                     </div>
 
                     <div className='w-full sm:w-full mt-2'>
-                        <label htmlFor="EventName">ชื่อข้อมูลประชาสัมพันธ์</label>
+                        <label htmlFor="EventName" className=' font-bold '>ชื่อข้อมูลประชาสัมพันธ์</label>
                         <Form.Item
                             key="EventName"
                             name="EventName"
@@ -172,7 +195,7 @@ export default function InputPublicRelation() {
                     </div>
 
                     <div className='mt-2 w-full sm:w-full'>
-                        <label htmlFor="EventDetail">รายละเอียดข้อมูลประชาสัมพันธ์</label>
+                        <label htmlFor="EventDetail" className=' font-bold '>รายละเอียดข้อมูลประชาสัมพันธ์</label>
                         <Form.Item
                             name="EventDetail"
                             key="EventDetail"
@@ -192,7 +215,7 @@ export default function InputPublicRelation() {
                     </div>
 
                     <div className='mt-2 w-full sm:w-full'>
-                        <label htmlFor="EventMore">รายละเอียดเพิ่มเติมข้อมูลประชาสัมพันธ์</label>
+                        <label htmlFor="EventMore" className=' font-bold '>รายละเอียดเพิ่มเติมข้อมูลประชาสัมพันธ์</label>
                         <Form.Item
                             name="EventMore"
                             key="EventMore"
@@ -212,7 +235,7 @@ export default function InputPublicRelation() {
                     </div>
 
                     <div className='mt-2 w-full sm:w-2/4'>
-                        <label>หมวดหมู่ข้อมูลประชาสัมพันธ์</label>
+                        <label className=' font-bold '>หมวดหมู่ข้อมูลประชาสัมพันธ์</label>
                         <Form.Item
                             key="EventCategory"
                             name="EventCategory"
@@ -236,7 +259,7 @@ export default function InputPublicRelation() {
                     </div>
 
                     <div className='w-full sm:w-2/4 mt-2'>
-                        <label htmlFor="LevelEvent">สิทธิการรับรู้ข้อมูลประชาสัมพันธ์</label>
+                        <label htmlFor="LevelEvent" className=' font-bold '>สิทธิการรับรู้ข้อมูลประชาสัมพันธ์</label>
                         <Form.Item
                             key='LevelEvent'
                             name="LevelEvent"
@@ -249,7 +272,7 @@ export default function InputPublicRelation() {
                         >
                             <Checkbox.Group
                                 style={{ width: '100%' }}
-                                onChange={onChange}
+                                onChange={handleLevelEventChange}
                                 value={newItem.LevelEvent}
                             >
                                 <div>
@@ -259,7 +282,12 @@ export default function InputPublicRelation() {
                                                 <Checkbox value={section.Section}>{section.Section}</Checkbox>
                                             </Col>
                                         ))}
-                                        <Col span={24}>
+                                        <Col span={12}>
+                                            <Checkbox value="อาจารย์">
+                                                อาจารย์
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={12}>
                                             <Checkbox value="สาธารณะ(ทุกคน)" onChange={handleSelectAllChange}>
                                                 สาธารณะ(ทุกคน)
                                             </Checkbox>
@@ -271,7 +299,7 @@ export default function InputPublicRelation() {
                     </div>
 
                     <div className='w-full sm:w-full mt-2'>
-                        <label htmlFor="Postdate">วันที่โพสต์</label>
+                        <label htmlFor="Postdate" className=' font-bold '>วันที่โพสต์</label>
                         <Form.Item
                             key="postdate"
                             name="Postdate"

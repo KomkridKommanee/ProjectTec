@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, Form, Input, Card, Upload, message, Switch, Row, Col } from 'antd';
-import { InboxOutlined } from '@ant-design/icons';
+import { InboxOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { updateDoc, doc, collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db, app } from '../api/firebase/firebase';
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
@@ -94,7 +94,7 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
     if (values.includes('สาธารณะ(ทุกคน)')) {
       setEditedItem({
         ...editedItem,
-        LevelEvent: sections.map(section => section.Section).concat('สาธารณะ(ทุกคน)')
+        LevelEvent: sections.map(section => section.Section).concat('อาจารย์', 'สาธารณะ(ทุกคน)')
       });
     } else {
       setEditedItem({ ...editedItem, LevelEvent: values });
@@ -104,7 +104,7 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
   const handleSelectAllChange = (e) => {
     const checked = e.target.checked;
     if (checked) {
-      setEditedItem({ ...editedItem, LevelEvent: sections.map(section => section.Section) });
+      setEditedItem({ ...editedItem, LevelEvent: sections.map(section => section.Section).concat('อาจารย์') });
     } else {
       setEditedItem({ ...editedItem, LevelEvent: [] });
     }
@@ -117,7 +117,7 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
           layout="inline"
           onFinish={handleSubmit}>
           <div className='w-full sm:w-full mt-2'>
-            <label htmlFor="EventImg">รูปภาพข้อมูลประชาสัมพันธ์</label>
+            <label htmlFor="EventImg" className=' font-bold '>รูปภาพข้อมูลประชาสัมพันธ์</label>
             <Form.Item>
               <Upload
                 name="EventImg"
@@ -140,7 +140,7 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
             )}
           </div>
           <div className='w-full sm:w-full mt-2'>
-            <label htmlFor="EventName">ชื่อข้อมูลประชาสัมพันธ์</label>
+            <label htmlFor="EventName" className=' font-bold '>ชื่อข้อมูลประชาสัมพันธ์</label>
             <Form.Item>
               <Input
                 name="EventName"
@@ -151,7 +151,7 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
             </Form.Item>
           </div>
           <div className='mt-2 w-full sm:w-full'>
-            <label htmlFor="EventDetail">รายละเอียดข้อมูลประชาสัมพันธ์</label>
+            <label htmlFor="EventDetail" className=' font-bold '>รายละเอียดข้อมูลประชาสัมพันธ์</label>
             <Form.Item>
               <textarea
                 name="EventDetail"
@@ -162,7 +162,7 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
             </Form.Item>
           </div>
           <div className='mt-2 w-full sm:w-full'>
-            <label htmlFor="EventMore">รายละเอียดเพิ่มเติมข้อมูลประชาสัมพันธ์</label>
+            <label htmlFor="EventMore" className=' font-bold '>รายละเอียดเพิ่มเติมข้อมูลประชาสัมพันธ์</label>
             <Form.Item>
               <Input
                 name="EventMore"
@@ -173,7 +173,7 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
             </Form.Item>
           </div>
           <div className='mt-2 w-full sm:w-2/4'>
-            <label>หมวดหมู่ข้อมูลประชาสัมพันธ์</label>
+            <label className=' font-bold '>หมวดหมู่ข้อมูลประชาสัมพันธ์</label>
             <Form.Item>
               <select
                 name="EventCategory"
@@ -192,7 +192,7 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
             </Form.Item>
           </div>
           <div className='w-full sm:w-2/4 mt-2'>
-            <label htmlFor="LevelEvent">สิทธิการรับรู้ข้อมูลประชาสัมพันธ์</label>
+            <label htmlFor="LevelEvent" className=' font-bold '>สิทธิการรับรู้ข้อมูลประชาสัมพันธ์</label>
             <Form.Item>
               <Checkbox.Group
                 value={editedItem.LevelEvent}
@@ -206,7 +206,12 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
                         <Checkbox value={section.Section}>{section.Section}</Checkbox>
                       </Col>
                     ))}
-                    <Col span={24}>
+                    <Col span={12}>
+                      <Checkbox value="อาจารย์">
+                        อาจารย์
+                      </Checkbox>
+                    </Col>
+                    <Col span={12}>
                       <Checkbox value="สาธารณะ(ทุกคน)" onChange={handleSelectAllChange}>
                         สาธารณะ(ทุกคน)
                       </Checkbox>
@@ -217,7 +222,7 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
             </Form.Item>
           </div>
           <div className='w-full sm:w-2/4 mt-2'>
-            <label htmlFor="Postdate">วันที่โพสต์</label>
+            <label htmlFor="Postdate" className=' font-bold '>วันที่โพสต์</label>
             <Form.Item>
               <Input
                 type="date"
@@ -234,9 +239,10 @@ export default function EditPublicRelation({ selectedItem, onCancel, onUpdate })
           </div>
           <div className='w-full sm:w-2/4 mt-2'></div>
           <div className='w-full sm:w-full mt-2'>
-            <label>สถานะ</label>
+            <label className=' font-bold '>สถานะ</label>
             <Form.Item>
-              <Switch checked={status} onChange={handleStatusChange} />
+              <Switch 
+                checked={status} onChange={handleStatusChange} />
             </Form.Item>
           </div>
           <div className='w-full sm:w-9/12 mt-2'></div>

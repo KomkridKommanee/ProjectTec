@@ -1,85 +1,106 @@
-import { Button, Form, Card, Input, Image, message } from 'antd';
+import { Button, Form, Card, Input, Image } from 'antd';
 import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from './api/firebase/firebase';
+import { db } from './api/firebase/firebase'; // ตรวจสอบให้แน่ใจว่าได้เชื่อมต่อ Firebase อย่างถูกต้อง
 
 export const Login1 = () => {
   const router = useRouter();
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // เพื่อป้องกันการรีเฟรชหน้าเมื่อกดปุ่ม "เข้าสู่ระบบ"
+    e.preventDefault(); // ป้องกันการรีเฟรชหน้าเมื่อกดปุ่มเข้าสู่ระบบ
 
-    const username = e.target.username.value; // รับค่า username จาก input field
-    const password = e.target.password.value; // รับค่า password จาก input field
+    const username = e.target.username.value.trim();
+    const password = e.target.password.value.trim();
+
+    if (!username || !password) {
+      alert('กรุณากรอกชื่อผู้ใช้งานและรหัสผ่าน');
+      return;
+    }
 
     try {
-      // Query Firestore to find the user with the given username
+      // ค้นหาผู้ใช้ใน Firestore โดยใช้ชื่อผู้ใช้
       const userQuery = query(collection(db, 'user'), where('UserName', '==', username));
       const querySnapshot = await getDocs(userQuery);
 
       if (!querySnapshot.empty) {
-        const userDoc = querySnapshot.docs[0];
+        const userDoc = querySnapshot.docs[0]; // ดึงเอกสารผู้ใช้ตัวแรกจาก query
         const userData = userDoc.data();
 
-        // Check if the password matches
+        // ตรวจสอบว่ารหัสผ่านถูกต้องหรือไม่
         if (userData.Password === password) {
-          message.success('เข้าสู่ระบบสำเร็จ');
-          router.push('/Admin/Home_Admin');
+          alert('เข้าสู่ระบบสำเร็จ');
+          
+          // เก็บ UserID ใน localStorage
+          localStorage.setItem('UserID', userDoc.id); // บันทึก UserID ใน localStorage
+          console.log('UserID เก็บใน localStorage:', userDoc.id);
+
+          // เปลี่ยนหน้าเว็บตามประเภทผู้ใช้งาน
+          if (userData.UserType === 'แอดมิน') {
+            router.push('/Admin/Home_Admin');
+          } else if (userData.UserType === 'อาจารย์') {
+            router.push('/Teachers/Home_Teachers');
+          } else {
+            alert('ประเภทผู้ใช้งานไม่ถูกต้อง');
+          }
         } else {
-          message.error('รหัสผ่านไม่ถูกต้อง');
+          alert('รหัสผ่านไม่ถูกต้อง');
         }
       } else {
-        message.error('ไม่พบผู้ใช้');
+        alert('ไม่พบผู้ใช้งานในระบบ');
       }
     } catch (error) {
-      console.error('Failed to login:', error);
-      message.error('เกิดข้อผิดพลาดในการเข้าสู่ระบบ');
+      console.error('การเข้าสู่ระบบล้มเหลว:', error);
+      alert('เกิดข้อผิดพลาดในการเข้าสู่ระบบ');
     }
   };
 
   return (
     <>
-      <Card className='bg-white pt-2 w-full rounded-3xl'>
+      <Card className='bg-white pt-8 w-full rounded-3xl'>
         <div className='w-full my-3 text-cyan-600 md:text-cyan-600 text-2xl md:text-2xl md:px-8 py-0 rounded-3xl text-center font-bold'>
-          <Image className='h-fit' src="/logolru.png" alt="Trulli" />
+          <Image className='h-fit' src="/logolru.png" alt="Logo" preview={false} />
           <div className='w-full text-cyan-600 md:text-cyan-600 text-3xl md:text-3xl md:px-4 rounded-3xl text-center font-extrabold'>
             ComSciLRU
           </div>
-          <br />
-          ประชาสัมพันธ์สาขาวิชาวิทยาการคอมพิวเตอร์
-          <br />
-          คณะวิทยาศาสตร์และเทคโนโลยี
-          <br />
-          มหาวิทยาลัยราชภัฏเลย
+          <p className="text-center mt-2 text-cyan-600">
+            ประชาสัมพันธ์สาขาวิชาวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏเลย
+          </p>
         </div>
         <div className='mt-3 text-center items-center justify-items-center'>
-          <Card className='lg:px-40 rounded-3xl border-8 border-cyan-600 md:py-5 px-2 md:px-5 lg:max-w-7xl mx-auto'>
+          <Card className='lg:px-40 rounded-3xl border-8 border-cyan-600 md:py-5 px-2 md:px-5 lg:max-w-7xl mx-auto shadow-lg'>
             <div className="w-full">
               <form onSubmit={handleLogin}>
                 <div className="py-4">
-                  <input
+                  <Input
                     name="username"
-                    className="shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
                     type="text"
-                    placeholder="Username"
+                    placeholder="ชื่อผู้ใช้งาน"
                   />
                 </div>
                 <div className="py-4 pb-6">
-                  <input
+                  <Input.Password
                     name="password"
-                    className="shadow appearance-none border-2 border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id="password"
-                    type="password"
-                    placeholder="Password"
+                    placeholder="รหัสผ่าน"
                   />
                 </div>
-                <div className="">
-                  <button type="submit" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-bold rounded-lg px-5 py-2.5 text-center me-2 mb-2 w-full text-xl">
+                <div className="pt-4">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="w-full text-xl"
+                    style={{
+                      background: 'linear-gradient(to right, #00bcd4, #1e90ff)',
+                      border: 'none',
+                    }}
+                  >
                     เข้าสู่ระบบ
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>
