@@ -14,7 +14,7 @@ export default function Set1300() {
 
             <Card className='bg-white pt-8 w-full lg:mx-36 rounded-3xl'>
                     <div className='w-full my-3 text-red-800 md:text-white text-xl md:text-xl md:bg-red-800 md:px-8 py-2 rounded-3xl'>
-                    โต๊ะจีนราคา 1,300 บาท
+                    โต๊ะจีนราคา 1,400 บาท
                     </div>
                     <div className=' mt-4 text-center' >
                         <Card className='lg:px-20 bg-red-800 rounded-3xl mx-1'>
@@ -48,13 +48,13 @@ export default function Set1300() {
                                             จานที่ 3 :
                                         </p>
                                         <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                            ยำหมูยอหนัง , ยำรวมมิตร
+                                            ยำหมูยอหนัง , ยำโป๊ยเซียน
                                         </p>
                                         <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                             จานที่ 4 :
                                         </p>
                                         <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                            กระเพาะปลาน้ำแดง , ต้มจืดเต้าหู้ไข่
+                                            กระเพาะปลา , ต้มจืดเต้าหู้ไข่สาหร่าย , ต้มยำไข่น้ำข้น
                                         </p>
                                         <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                             จานที่ 5 :
@@ -66,13 +66,13 @@ export default function Set1300() {
                                             จานที่ 6 :
                                         </p>
                                         <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                            ข้าวผัดรวม-กุนเชียง , ข้าวผัดหมูหยอง
+                                            ข้าวผัดรวมกุนเชียง , ข้าวผัดไข่
                                         </p>
                                         <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 '>
                                             จานที่ 7 :
                                         </p>
                                         <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            ผลไม้รวม , รวมมิตรกะทิสด
+                                            ผลไม้สด , ของหวานรวมมิตร
                                         </p>
                                         <p className=' col-span-3'>
 

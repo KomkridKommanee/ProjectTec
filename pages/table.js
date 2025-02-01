@@ -29,7 +29,7 @@ export default function table() {
                             <Card className='w-full col-span-1 rounded-3xl ' >
                             
                             <div className=' text-lg mb-3 py-3'>
-                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,300 บาท</p>
+                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,400 บาท</p>
                             </div>
                             <Image 
                             alt='5'
@@ -41,7 +41,7 @@ export default function table() {
                         <Link href="./Set/Set1500">
                         <Card className='w-full col-span-1 rounded-3xl'>
                             <div className=' text-lg bg mb-3 py-3'>
-                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,500 บาท</p>
+                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 1,600 บาท</p>
                             </div>
                             <Image 
                             alt='5'
@@ -65,7 +65,7 @@ export default function table() {
                         <Link href="./Set/Set2000">
                         <Card className='w-full col-span-1 rounded-3xl '>
                             <div className=' text-lg bg mb-3 py-3'>
-                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 2,000 บาท</p>
+                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 2,200 บาท</p>
                             </div>
                             <Image 
                             alt='5'
@@ -78,7 +78,7 @@ export default function table() {
                         <Link href="./Set/Set2300" >
                         <Card>
                             <div className=' text-lg bg mb-3 py-3'>
-                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 2,300 บาท</p>
+                                <p className='text-center rounded-xl text-white bg-red-700 shadow-lg mx-auto lg:mx-20'>โต๊ะจีนราคา 2,400 บาท</p>
                             </div>
                             <Image 
                             alt='5'

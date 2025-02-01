@@ -13,7 +13,7 @@ export default function Set1500() {
             
             <Card className='bg-white pt-8 w-full lg:mx-36 rounded-3xl'>
                 <div className='w-full my-3 text-red-800 md:text-white text-xl md:text-xl md:bg-red-800 md:px-8 py-2 rounded-3xl'>
-                โต๊ะจีนราคา 1,500 บาท
+                โต๊ะจีนราคา 1,600 บาท
                 </div>
                 <div className=' mt-4 text-center' >
                     <Card className='lg:px-20 bg-red-800 rounded-3xl mx-1'>
@@ -46,37 +46,37 @@ export default function Set1500() {
                                         จานที่ 3 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        ยำโป๊ยเซียน , หมูมะนาวเส้นแก้ว
+                                        หมูมะนาวเส้นแก้ว , ยำหมูตะไคร้ทรงเครื่อง , ยำรวม
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 4 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        ไก่พะโล้ยอดผัก
+                                        ไก่พะโล้ , ไก่ผัดเม็ดมะม่วง
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 5 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        ปลานึ่งมะนาว , ปลานึ่งซีอิ๊ว , ปลาสามรส , ปลาลุยสวน
+                                        ปลานึ่งมะนาว , ปลาสามรส
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 6 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        ต้มจืดเต้าหู้สาหร่ายทะเล , กระเพาะปลาน้ำแดง
+                                        ต้มยำขาหมูน้ำข้น , กระเพาะปลา
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 7 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        ข้าวผัดเกลือ , ข้าวผัดปู
+                                        ข้าวผัดเกลือ , หมี่ซั่ว
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1  '>
                                         จานที่ 8 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4  '>
-                                        ผลไม้กระป๋อง , รวมมิตรกะทิสด
+                                        ของหวานรวมมิตร , ทับทิมกรอบ , ผลไม้กระป๋อง
                                     </p>
                                     <p className=' col-span-3'>
 

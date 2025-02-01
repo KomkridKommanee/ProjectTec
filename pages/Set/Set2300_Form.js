@@ -48,6 +48,10 @@ export default function Set2300_Form() {
         console.log('radio checked', e.target.value);
         setValue8(e.target.value);
     };
+    const onChange9 = (e) => {
+        console.log('radio checked', e.target.value);
+        setValue8(e.target.value);
+    };
     const [message, setMessage] = useState('');
     const handleChange2 = (event) => {
         // 👇 Get input value from "event"
@@ -59,227 +63,223 @@ export default function Set2300_Form() {
         setMessage1(event.target.value);
     };
     let inputvar = message;
-    
-    let total = Math.round(((inputvar* 2)*0.70)/8);
+
+    let total = Math.round(((inputvar * 2) * 0.70) / 8);
 
     let inputvar1 = message1;
 
-    let total1 = Math.round(inputvar1*2300);
+    let total1 = Math.round(inputvar1 * 2300);
     return (
         <>
-        <Example className=" top-10" />
-        <Form className="flex bg-bottom bg-red-800 min-h-full items-center justify-center py-12 sm:px-5 md:text-start text-center px-2">
+            <Example className=" top-10" />
+            <Form className="flex bg-bottom bg-red-800 min-h-full items-center justify-center py-12 sm:px-5 md:text-start text-center px-2">
 
-            <Card className='bg-white pt-8 w-full lg:mx-36 rounded-3xl'>
-                <div className='w-full my-3 text-red-800 md:text-white text-xl md:text-xl md:bg-red-800 md:px-8 py-2 rounded-3xl'>
-                โต๊ะจีนราคา 2,300 บาท
-                </div>
-                <div className=' mt-4 text-center' >
-                    <Card className='lg:px-20 bg-red-800 rounded-3xl mx-1'>
-                        <div className='grid grid-cols-2'>
-                        <div className=' my-5 col-span-2 xl:col-span-1 self-center'>
-                                <Image className='h-fit'
-                                    src="/16.jpg"
-                                    
-                                    alt="Trulli"
+                <Card className='bg-white pt-8 w-full lg:mx-36 rounded-3xl'>
+                    <div className='w-full my-3 text-red-800 md:text-white text-xl md:text-xl md:bg-red-800 md:px-8 py-2 rounded-3xl'>
+                        โต๊ะจีนราคา 2,400 บาท
+                    </div>
+                    <div className=' mt-4 text-center' >
+                        <Card className='lg:px-20 bg-red-800 rounded-3xl mx-1'>
+                            <div className='grid grid-cols-2'>
+                                <div className=' my-5 col-span-2 xl:col-span-1 self-center'>
+                                    <Image className='h-fit'
+                                        src="/16.jpg"
 
-                                />
+                                        alt="Trulli"
+
+                                    />
                                 </div>
                                 <Card className=' bg-orange-100 my-4 col-span-2 xl:col-span-1'>
-                                <div className='grid grid-cols-5'>
-                                    <p className=' text-start w-full my-3 text-red-800 text-lg col-span-full'>
-                                        รายการอาหาร
-                                    </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
-                                        จานที่ 1 :
-                                    </p>
-                                    <Radio.Group onChange={onChange1} value={value1} className=' col-span-4 '>
-                                        <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            ข้าวเกรียบ
-                                        </Radio>
-                                        <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
-                                            หมี่กรอบ
-                                        </Radio>
-                                    </Radio.Group>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
-                                        จานที่ 2 :
-                                    </p>
-                                    <Radio.Group onChange={onChange2} value={value2} className=' col-span-4 '>
-                                        <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            ออเดิร์ฟจีน
-                                        </Radio>
-                                        <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            ออเดิร์ฟทะเล
-                                        </Radio>
-                                        <Radio value={3} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
-                                            ออเดิร์ฟอีสาน 
-                                        </Radio>
-                                    </Radio.Group>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
-                                        จานที่ 3 :
-                                    </p>
-                                    <Radio.Group onChange={onChange3} value={value3} className=' col-span-4 '>
-                                        <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            กระเพาะปลาเนื้อปู
-                                        </Radio>
-                                        <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            ยำรวมทะเล
-                                        </Radio>
-                                        
-                                        <Radio value={3} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
-                                            สลัดครีมกุ้งทอด
-                                        </Radio>
-                                    </Radio.Group>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
-                                        จานที่ 4 :
-                                    </p>
-                                    <Radio.Group onChange={onChange4} value={value4} className=' col-span-4 '>
-                                        <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            ตุ๋นซี่โครงหมูเยื่อไผ่
-                                        </Radio>
-                                        <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
-                                            ต้มแซ่บซี่โครงหมู
-                                        </Radio>
-                                    </Radio.Group>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
-                                        จานที่ 5 :
-                                    </p>
-                                    <Radio.Group onChange={onChange5} value={value5} className=' col-span-4 '>
-                                        <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            แป๊ะซะปลาช่อน
-                                        </Radio>
-                                        <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 '>
-                                            แป๊ะซะปลานิล
-                                        </Radio>
-                                        <Radio value={3} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
-                                            ปลาช่อนลุยสวน
-                                        </Radio>
+                                    <div className='grid grid-cols-5'>
+                                        <p className=' text-start w-full my-3 text-red-800 text-lg col-span-full'>
+                                            รายการอาหาร
+                                        </p>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
+                                            จานที่ 1 :
+                                        </p>
+                                        <Radio.Group onChange={onChange1} value={value1} className=' col-span-4 '>
 
-                                    </Radio.Group>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
-                                        จานที่ 6 :
-                                    </p>
-                                    <Radio.Group onChange={onChange6} value={value6} className=' col-span-4 '>
-                                        <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            พะโล้ขาหมูยอดผัก-หมั่นโถว
-                                        </Radio>
-                                        <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
-                                            พะโล้เป็ดยอดผัก-หมั่นโถว
-                                        </Radio>
+                                            <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
+                                                หมี่กรอบ
+                                            </Radio>
+                                        </Radio.Group>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
+                                            จานที่ 2 :
+                                        </p>
+                                        <Radio.Group onChange={onChange2} value={value2} className=' col-span-4 '>
 
-                                    </Radio.Group>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
-                                        จานที่ 7 :
-                                    </p>
-                                    <Radio.Group onChange={onChange7} value={value7} className=' col-span-4 '>
-                                        <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
-                                            หมี่ซั่ว
-                                        </Radio>
-                                        <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 '>
-                                            ข้าวผัดกุ้ง
-                                        </Radio>
-                                        <Radio value={3} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
-                                            ข้าวผัดปู
-                                        </Radio>
+                                            <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
+                                                ออเดิร์ฟทะเล
+                                            </Radio>
+                                            <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
+                                                ออเดิร์ฟอีสาน
+                                            </Radio>
+                                        </Radio.Group>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
+                                            จานที่ 3 :
+                                        </p>
+                                        <Radio.Group onChange={onChange3} value={value3} className=' col-span-4 '>
+                                            <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
+                                                หมูมะนาวเส้นแก้ว
+                                            </Radio>
 
-                                    </Radio.Group>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
-                                        จานที่ 8 :
-                                    </p>
-                                    <Radio.Group onChange={onChange8} value={value8} className=' col-span-4 '>
-                                        
-                                        <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-5 '>
-                                            ทับทิมกรอบมะพร้าวอ่อน
-                                        </Radio>
-                                        <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 '>
-                                            บัวลอยมะพร้าวอ่อน
-                                        </Radio>
-                                        <Radio value={3} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
-                                            โอนีแปะก๊วย
-                                        </Radio>
+                                            <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
+                                                ยำหมูตะไคร้ทรงเครื่อง
+                                            </Radio>
+                                        </Radio.Group>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
+                                            จานที่ 4 :
+                                        </p>
+                                        <Radio.Group onChange={onChange4} value={value4} className=' col-span-4 '>
+                                            <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
+                                                ขาหมู+หมั่นโถว
+                                            </Radio>
+                                            <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
+                                                เป็ดพะโล้
+                                            </Radio>
+                                        </Radio.Group>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
+                                            จานที่ 5 :
+                                        </p>
+                                        <Radio.Group onChange={onChange5} value={value5} className=' col-span-4 '>
+                                            <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-4 '>
+                                                ต้มยำโป๊ะแตก
+                                            </Radio>
+                                            <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 '>
+                                                ต้มแซ่บซี่โครงอ่อน
+                                            </Radio>
+                                            <Radio value={3} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
+                                                กุ้งทอดซอสมะนาว
+                                            </Radio>
 
-                                    </Radio.Group>
+                                        </Radio.Group>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
+                                            จานที่ 6 :
+                                        </p>
+                                        <Radio.Group onChange={onChange6} value={value6} className=' col-span-4 '>
 
-                                </div>
-                            </Card>
-                        </div>
+                                            <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
+                                                กระเพาะปลาเนื้อปู+ไข่นกกระทา
+                                            </Radio>
 
+                                        </Radio.Group>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
+                                            จานที่ 7 :
+                                        </p>
+                                        <Radio.Group onChange={onChange7} value={value7} className=' col-span-4 '>
 
-                    </Card>
-                </div>
+                                            <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
+                                                สลัดผัก+ผลไม้+กุ้งทอด
+                                            </Radio>
 
-                <div className=' mt-4 text-center' >
-                    <Card className='lg:px-20 bg-red-800  rounded-3xl mx-1'>
-                        <div className='grid grid-cols-2'>
-                        <Card className=' bg-orange-100 col-span-2 xl:col-span-1'>
-                                <div className='grid grid-cols-6'>
-                                    <p className=' text-start w-full my-3 text-red-800 text-lg col-span-full'>
-                                        เงื่อนไข
-                                    </p>
-                                    
-                                    <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
-                                    จำนวนการ์ดเชิญ                
-                                    </p>
-                                    <Input onChange={handleChange2} id='1' type='Number' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
-                                    </Input>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
-                                    การ์ด                
-                                    </p>
-                                    
-                                    
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-3  pb-3 '>
-                                        จำนวนโต๊ะที่แนะนำ
-                                    </p>
-                                    <Input value={total} aria-labelledby='1' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
-                                    </Input>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
-                                        โต๊ะ                
-                                    </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
-                                        จำนวนโต๊ะ                
-                                    </p>
-                                    <Input onChange={handleChange3} id='2' type='Number' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
-                                    </Input>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
-                                        คน                
-                                    </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
-                                        มัดจำ               
-                                    </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-2 ' >
-                                        3,000              
-                                    </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
-                                        บาท                
-                                    </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-3  pb-3 '>
-                                        รวมเงิน
-                                    </p>
-                                    <Input value={total1} aria-labelledby='2' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
-                                    </Input>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
-                                        บาท                
-                                    </p>
-                                </div>
+                                        </Radio.Group>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
+                                            จานที่ 8 :
+                                        </p>
+                                        <Radio.Group onChange={onChange8} value={value7} className=' col-span-4 '>
 
-                            </Card>
-                            <div className='col-span-2 xl:col-span-1 self-center'>
-                            <Image
-                                    className='w-full'
-                                    alt='f'
-                                    src="/28.jpg" />
+                                            <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-5 '>
+                                                ข้าวผัดกุ้ง
+                                            </Radio>
+                                            <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
+                                                หมี่ซั่ว
+                                            </Radio>
+
+                                        </Radio.Group>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
+                                            จานที่ 9 :
+                                        </p>
+                                        <Radio.Group onChange={onChange9} value={value8} className=' col-span-4 '>
+
+                                            <Radio value={1} className=' text-start w-full my-2 text-red-800 text-base col-span-5 '>
+                                                บัวลอยมะพร้าวอ่อน
+                                            </Radio>
+                                            <Radio value={2} className=' text-start w-full my-2 text-red-800 text-base col-span-5 border-b border-yellow-300 pb-3'>
+                                                โอนีแปะก๊วย
+                                            </Radio>
+
+                                        </Radio.Group>
+
+                                    </div>
+                                </Card>
                             </div>
-                        </div>
 
 
-                    </Card>
-                </div>
-            </Card>
-        </Form>
-        <FooterTab />
+                        </Card>
+                    </div>
+
+                    <div className=' mt-4 text-center' >
+                        <Card className='lg:px-20 bg-red-800  rounded-3xl mx-1'>
+                            <div className='grid grid-cols-2'>
+                                <Card className=' bg-orange-100 col-span-2 xl:col-span-1'>
+                                    <div className='grid grid-cols-6'>
+                                        <p className=' text-start w-full my-3 text-red-800 text-lg col-span-full'>
+                                            เงื่อนไข
+                                        </p>
+
+                                        <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
+                                            จำนวนการ์ดเชิญ
+                                        </p>
+                                        <Input onChange={handleChange2} id='1' type='Number' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
+                                        </Input>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
+                                            การ์ด
+                                        </p>
+
+
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-3  pb-3 '>
+                                            จำนวนโต๊ะที่แนะนำ
+                                        </p>
+                                        <Input value={total} aria-labelledby='1' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
+                                        </Input>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
+                                            โต๊ะ
+                                        </p>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
+                                            จำนวนโต๊ะ
+                                        </p>
+                                        <Input onChange={handleChange3} id='2' type='Number' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
+                                        </Input>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
+                                            คน
+                                        </p>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-3' >
+                                            มัดจำ
+                                        </p>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base pb-3 col-span-2 ' >
+                                            3,000
+                                        </p>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
+                                            บาท
+                                        </p>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base col-span-3  pb-3 '>
+                                            รวมเงิน
+                                        </p>
+                                        <Input value={total1} aria-labelledby='2' className=' text-center w-full my-2 text-red-800 text-base border-b-2 border-yellow-300 pt-0 pb-0 rounded-xl col-span-2 -ml-5'>
+                                        </Input>
+                                        <p className=' text-start w-full my-2 text-red-800 text-base  pb-3 col-span-1' >
+                                            บาท
+                                        </p>
+                                    </div>
+
+                                </Card>
+                                <div className='col-span-2 xl:col-span-1 self-center'>
+                                    <Image
+                                        className='w-full'
+                                        alt='f'
+                                        src="/28.jpg" />
+                                </div>
+                            </div>
+
+
+                        </Card>
+                    </div>
+                </Card>
+            </Form>
+            <FooterTab />
         </>
     )
-    
+
 
     console.log(total)
 }

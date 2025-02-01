@@ -13,7 +13,7 @@ export default function Set2000() {
             
             <Card className='bg-white pt-8 w-full lg:mx-36 rounded-3xl'>
                 <div className='w-full my-3 text-red-800 md:text-white text-xl md:text-xl md:bg-red-800 md:px-8 py-2 rounded-3xl'>
-                โต๊ะจีนราคา 2,000 บาท
+                โต๊ะจีนราคา 2,200 บาท
                 </div>
                 <div className=' mt-4 text-center' >
                     <Card className='lg:px-20 bg-red-800 rounded-3xl mx-1'>
@@ -41,43 +41,49 @@ export default function Set2000() {
                                         จานที่ 2 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        ออเดิร์ฟจีน , ออเดิร์ฟทะเล , ออเดิร์ฟอีสาน
+                                        ออเดิร์ฟจีน , ออเดิร์ฟทะเล
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 3 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        ยำเห็ดหอมกุ้งสด , ยำใหญ่ , ยำรวมมิตร 
+                                        ยำรวมทะเล , หมูมะนาวเส้นแก้ว
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 4 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        ตุ๋นซี่โครงหมูเยื่อไผ่ , ต้มแซ่บซี่โครงหมู
+                                        แป๊ะซะปลาช่อน , ปลาช่อนลุยสวน
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 5 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        แป๊ะซะปลาช่อน , แป๊ะซะปลานิล , ปลาช่อนลุยสวน
+                                        ต้มยำรวม , ต้มแซ่บ , ซี่โครงหมูตุ๋นยาจีน
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 6 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        พะโล้ขาหมูยอดผัก , พะโล้เป็ดยอดผัก
+                                        ขาหมู , เป็ดพะโล้
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 7 :
                                     </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
-                                        หมี่ซั่ว , ข้าวผัดกุ้ง , ข้าวผัดกุนเชียง
+                                        กระเพาะปลาเนื้อปู+ไข่นกกระทา
                                     </p>
-                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1  '>
+                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1 border-b border-yellow-300 pb-3'>
                                         จานที่ 8 :
                                     </p>
+                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-4 border-b border-yellow-300 pb-3'>
+                                        ข้าวผัดปู
+                                    </p>
+                                    <p className=' text-start w-full my-2 text-red-800 text-base col-span-1  '>
+                                        จานที่ 9 :
+                                    </p>
                                     <p className=' text-start w-full my-2 text-red-800 text-base col-span-4  '>
-                                        ทับทิมกรอบมะพร้าวอ่อน , บัวลอยมะพร้าวอ่อน
+                                        ทับทิมกรอบมะพร้าวอ่อน , โอนีแปะก๊วย
                                     </p>
                                     <p className=' col-span-3'>
 
