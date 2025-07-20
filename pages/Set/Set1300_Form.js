@@ -59,7 +59,7 @@ export default function Set1300_Form() {
 
     let inputvar1 = message1;
 
-    let total1 = Math.round(inputvar1 * 1300);
+    let total1 = Math.round(inputvar1 * 1400);
 
     return (
         <>

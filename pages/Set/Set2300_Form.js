@@ -68,7 +68,7 @@ export default function Set2300_Form() {
 
     let inputvar1 = message1;
 
-    let total1 = Math.round(inputvar1 * 2300);
+    let total1 = Math.round(inputvar1 * 2400);
     return (
         <>
             <Example className=" top-10" />

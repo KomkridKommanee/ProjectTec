@@ -67,7 +67,7 @@ export default function Set2000_Form() {
 
     let inputvar1 = message1;
 
-    let total1 = Math.round(inputvar1 * 2000);
+    let total1 = Math.round(inputvar1 * 2200);
 
     return (
         <>
