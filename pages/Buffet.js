@@ -34,9 +34,9 @@ export default function Buffet() {
 
 // line notify 
     const [formData, setFormData] = useState({
-        message: '',
-        message2: '',
-        message3: '',
+        message: 'จินตราภา',
+        message2: 'มหาวิทยาลัยราชภัฏเลย',
+        message3: '0942244026',
     });
 
     const handleInputChange = (e) => {
@@ -302,13 +302,13 @@ export default function Buffet() {
                                         type='text'
                                         name="message"
                                         value={formData.message}
-                                        onChange={handleInputChange}
+                                        readOnly
                                         className="col-span-3 text-start bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                     <p>ที่อยู่</p>
                                     <TextArea
                                         required
                                         value={formData.message2}
-                                        onChange={handleInputChange}
+                                        readOnly
                                         className='col-span-3  rounded-3xl'
                                         name="message2"
                                         rows={4}
@@ -320,7 +320,7 @@ export default function Buffet() {
                                         type='number'
                                         name="message3"
                                         value={formData.message3}
-                                        onChange={handleInputChange}
+                                        readOnly
                                         rows={4}
                                         className="col-span-3 text-start bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                         <div className='col-span-full justify-self-end'>
